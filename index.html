@@ -3,623 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GreenBox Design System ｜ 方案總覽</title>
-<meta name="description" content="無毒農（GreenBox）Design System v1：方案 A 踏實版、方案 C 文青版的規範總覽與「關於無毒農」頁面範例。">
+<title>GreenBox Design System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
   body {
     font-family: 'Noto Sans TC', sans-serif;
     color: #1a1a1a;
     background: #fafbfb;
     line-height: 1.6;
-    font-size: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-
-  :root {
-    --green-main: #4ba83b;
-    --green-dark: #008000;
-    --green-deep: #1F4A1F;
-    --green-pale: #EFF5E5;
-    --text-primary: #1a1a1a;
-    --text-secondary: #595757;
-    --text-muted: #999;
-    --bg-white: #ffffff;
-    --bg-gray: #ecf0f1;
-    --bg-success: #f0f9ec;
-    --border: #e0e4e6;
-    --radius: 4px;
-  }
-
-  img { display: block; max-width: 100%; height: auto; }
   a { color: inherit; text-decoration: none; }
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-
-  /* ─── Top nav ─── */
-  .topnav {
+  .topbar {
+    padding: 20px 32px;
+    border-bottom: 1px solid #e0e4e6;
     background: #fff;
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
-    position: sticky;
-    top: 0;
-    z-index: 10;
   }
-  .topnav .row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .topnav .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .topbar .brand {
     font-weight: 700;
-    color: var(--green-main);
+    color: #4ba83b;
     font-size: 18px;
     letter-spacing: 0.02em;
   }
-  .topnav .brand small {
+  .topbar .brand small {
     font-size: 11px;
-    color: var(--text-muted);
+    color: #999;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-  }
-  .topnav .repo-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-    padding: 8px 14px;
-    border-radius: var(--radius);
-    transition: all 0.2s;
-  }
-  .topnav .repo-link:hover {
-    border-color: var(--green-main);
-    color: var(--green-main);
+    margin-left: 6px;
   }
 
-  /* ─── Hero ─── */
-  .hero {
-    padding: 96px 0 64px;
-    background: linear-gradient(180deg, #fff 0%, #fafbfb 100%);
-    border-bottom: 1px solid var(--border);
-  }
-  .hero .label {
-    display: inline-block;
-    font-size: 12px;
-    color: var(--green-main);
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
-  .hero h1 {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--green-dark);
-    margin-bottom: 24px;
-    letter-spacing: 0.01em;
-  }
-  .hero .lead {
-    font-size: 18px;
-    line-height: 1.85;
-    color: var(--text-primary);
-    max-width: 760px;
-    margin-bottom: 32px;
-  }
-  .hero .meta {
+  main {
+    flex: 1;
     display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-  .hero .meta span {
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    padding: 64px 32px;
   }
-  .hero .meta strong { color: var(--green-dark); font-weight: 600; }
 
-  /* ─── Section ─── */
-  .section { padding: 80px 0; }
-  .section.alt { background: #fff; }
-  .sec-num {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    color: var(--green-main);
-    text-transform: uppercase;
-    margin-bottom: 14px;
+  .container {
+    max-width: 880px;
+    width: 100%;
+    text-align: center;
   }
-  .sec-title {
-    font-size: 32px;
+
+  h1 {
+    font-size: clamp(32px, 4.5vw, 44px);
     font-weight: 700;
-    color: var(--green-dark);
+    color: #008000;
     margin-bottom: 16px;
     line-height: 1.3;
   }
-  .sec-intro {
+
+  .lead {
     font-size: 16px;
+    color: #595757;
+    margin-bottom: 64px;
     line-height: 1.85;
-    color: var(--text-primary);
-    max-width: 720px;
-    margin-bottom: 48px;
   }
-  .sec-intro strong { color: var(--green-dark); font-weight: 600; }
 
-  /* ─── Card grid ─── */
-  .grid {
+  .groups {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    text-align: left;
   }
 
-  .card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.2s;
-  }
-  .card:hover {
-    border-color: var(--green-main);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  }
-
-  .card .thumb {
-    aspect-ratio: 16 / 10;
-    background: var(--bg-gray);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  .card .thumb.preview { background: var(--bg-success); }
-  .card .thumb.sample-a { background: linear-gradient(135deg, #f0f9ec 0%, #e8f3e2 100%); }
-  .card .thumb.sample-c { background: linear-gradient(135deg, #f5f8ee 0%, #e2eed8 100%); }
-
-  .card .thumb-num {
-    font-size: 64px;
-    font-weight: 700;
-    color: rgba(75, 168, 59, 0.18);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-  .card .thumb.serif .thumb-num {
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 500;
-  }
-  .card .thumb-tag {
-    font-size: 12px;
+  .group h2 {
+    font-size: 14px;
+    color: #4ba83b;
     font-weight: 600;
-    color: var(--green-main);
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    margin-bottom: 8px;
   }
-  .card .thumb-tag.serif {
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 500;
+  .group .group-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #008000;
+    margin-bottom: 24px;
   }
 
-  .card .body {
-    padding: 24px;
-    flex: 1;
+  .btn-stack {
     display: flex;
     flex-direction: column;
-  }
-  .card .body h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--green-dark);
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  .card .body h3.serif {
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 500;
-  }
-  .card .body .badge {
-    display: inline-block;
-    font-size: 11px;
-    color: var(--green-main);
-    background: var(--bg-success);
-    padding: 3px 10px;
-    border-radius: var(--radius);
-    margin-bottom: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    width: fit-content;
-  }
-  .card .body p {
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--text-secondary);
-    flex: 1;
-    margin-bottom: 20px;
-  }
-  .card .actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .card .actions a {
-    flex: 1;
-    text-align: center;
-    padding: 10px 14px;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: var(--radius);
-    transition: all 0.2s;
-    min-width: 0;
-  }
-  .card .actions .btn-primary {
-    background: var(--green-main);
-    color: #fff;
-    border: 1px solid var(--green-main);
-  }
-  .card .actions .btn-primary:hover {
-    background: var(--green-dark);
-    border-color: var(--green-dark);
-  }
-  .card .actions .btn-secondary {
-    background: #fff;
-    color: var(--green-main);
-    border: 1px solid var(--green-main);
-  }
-  .card .actions .btn-secondary:hover {
-    background: var(--green-main);
-    color: #fff;
+    gap: 12px;
   }
 
-  /* ─── Comparison table ─── */
-  .compare-section {
-    background: #fff;
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
-  }
-  .compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 32px;
-    font-size: 15px;
-  }
-  .compare-table th, .compare-table td {
-    padding: 16px 20px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-  .compare-table th {
-    background: var(--bg-gray);
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 14px;
-  }
-  .compare-table td.label {
-    font-weight: 600;
-    color: var(--text-primary);
-    width: 200px;
-  }
-  .compare-table td .plan-a-cell { color: var(--green-dark); }
-  .compare-table td .plan-c-cell {
-    color: var(--green-deep);
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 500;
-  }
-
-  /* ─── Footer ─── */
-  .footer {
-    background: #1a1a1a;
-    color: #fff;
-    padding: 48px 0 32px;
-  }
-  .footer .row {
+  .btn {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 32px;
-  }
-  .footer h4 {
-    color: #fff;
+    background: #fff;
+    border: 1px solid #e0e4e6;
+    border-radius: 4px;
+    padding: 18px 24px;
     font-size: 16px;
-    margin-bottom: 16px;
-    font-weight: 600;
+    font-weight: 500;
+    color: #1a1a1a;
+    transition: all 0.15s;
   }
-  .footer p, .footer li, .footer a {
+  .btn:hover {
+    border-color: #4ba83b;
+    color: #4ba83b;
+    box-shadow: 0 4px 12px rgba(75, 168, 59, 0.08);
+    transform: translateY(-1px);
+  }
+  .btn .arrow {
+    font-size: 18px;
     color: #999;
-    font-size: 14px;
-    line-height: 1.85;
+    transition: transform 0.15s;
   }
-  .footer ul { list-style: none; }
-  .footer a:hover { color: var(--green-main); }
-  .footer .bottom {
-    border-top: 1px solid #333;
-    margin-top: 32px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: #777;
+  .btn:hover .arrow {
+    color: #4ba83b;
+    transform: translateX(2px);
   }
 
-  /* ─── Mobile RWD ─── */
-  @media (max-width: 1199px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 13px;
+    color: #999;
+    border-top: 1px solid #e0e4e6;
+    background: #fff;
   }
+  footer a { color: #595757; }
+  footer a:hover { color: #4ba83b; }
+
   @media (max-width: 768px) {
-    .container { padding: 0 20px; }
-    .hero { padding: 64px 0 48px; }
-    .section, .compare-section { padding: 56px 0; }
-    .grid { grid-template-columns: 1fr; gap: 16px; }
-    .sec-title { font-size: 26px; }
-    .compare-table { font-size: 14px; }
-    .compare-table th, .compare-table td { padding: 12px 14px; }
-    .compare-table td.label { width: 120px; font-size: 13px; }
-    .topnav .brand small { display: none; }
-    .footer .row { flex-direction: column; gap: 24px; }
+    main { padding: 40px 20px; }
+    .groups { grid-template-columns: 1fr; gap: 32px; }
+    .lead { margin-bottom: 40px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══ Top nav ═══ -->
-<nav class="topnav">
-  <div class="container row">
-    <div class="brand">
-      GreenBox Design System
-      <small>v1</small>
-    </div>
-    <a class="repo-link" href="https://github.com/glenwen-soohoo/greenbox-design-system" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      View on GitHub
-    </a>
-  </div>
-</nav>
-
-<!-- ═══ Hero ═══ -->
-<header class="hero">
-  <div class="container">
-    <span class="label">v1 — 2026 May</span>
-    <h1>無毒農 Design System<br>三方案決策樣本</h1>
-    <p class="lead">為了對齊 AI 時代的設計需求，我們把無毒農既有風格整理成 <strong>方案 A 踏實版</strong>，並提出 <strong>方案 C 文青版</strong> 作為視覺升級的可能方向。每個方案都附上規範總覽 + 兩個「關於無毒農」頁面範例，方便老闆直接看出選擇後的長相。</p>
-    <div class="meta">
-      <span>📐 <strong>2 個方案</strong>（A 踏實 / C 文青）</span>
-      <span>📄 <strong>6 個展示頁面</strong></span>
-      <span>🌿 主色 <strong>#4ba83b</strong></span>
-    </div>
-  </div>
+<header class="topbar">
+  <div class="brand">GreenBox Design System <small>v1</small></div>
 </header>
 
-<!-- ═══ Section A ═══ -->
-<section class="section" id="plan-a">
+<main>
   <div class="container">
-    <span class="sec-num">方案 A · Plan A</span>
-    <h2 class="sec-title">踏實版 — 規範化現有風格</h2>
-    <p class="sec-intro">把現有官網「不動的頁面」（商品、訂單、子品牌、Blog）的視覺規則整理成一份規則書。<strong>主色不變、字型不變、圓角 4px、Section padding 64px</strong>。最低風險、最快上線、AI 改版時可以從這份規則開始疊加。</p>
+    <h1>GreenBox Design System</h1>
+    <p class="lead">無毒農 v1 三方案決策樣本——選一個進入瀏覽。每個頁面上方有切換 bar，可以快速跳到其他方案。</p>
 
-    <div class="grid">
-      <!-- A 預覽 -->
-      <article class="card">
-        <div class="thumb preview">
-          <div class="thumb-num">A</div>
-          <div class="thumb-tag">Spec Overview</div>
+    <div class="groups">
+      <div class="group">
+        <h2>Plan A</h2>
+        <div class="group-name">踏實版</div>
+        <div class="btn-stack">
+          <a class="btn" href="plan-a/preview.html">
+            <span>方案 A · 規範總覽</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn" href="plan-a/sample1.html">
+            <span>方案 A · 範例 1</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn" href="plan-a/sample2.html">
+            <span>方案 A · 範例 2</span>
+            <span class="arrow">→</span>
+          </a>
         </div>
-        <div class="body">
-          <span class="badge">規範總覽</span>
-          <h3>方案 A · 規範頁</h3>
-          <p>色票、字級、按鈕、圓角、間距、版型等所有 token 視覺化呈現。完整的 Plan A 設計規則總覽。</p>
-          <div class="actions">
-            <a class="btn-primary" href="plan-a/preview.html">查看規範</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- A 範例 1 -->
-      <article class="card">
-        <div class="thumb sample-a">
-          <div class="thumb-num">01</div>
-          <div class="thumb-tag">Sample 01</div>
-        </div>
-        <div class="body">
-          <span class="badge">範例 1</span>
-          <h3>關於無毒農</h3>
-          <p>50/50 圖文左右、4-stat 統計列、4 步驟卡片網格、水產 21:9 banner。展現 Plan A 規範下的標準介紹頁版式。</p>
-          <div class="actions">
-            <a class="btn-primary" href="plan-a/sample1.html">純設計版</a>
-            <a class="btn-secondary" href="plan-a/sample1-greenbox.html">套官網殼</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- A 範例 2 -->
-      <article class="card">
-        <div class="thumb sample-a">
-          <div class="thumb-num">02</div>
-          <div class="thumb-tag">Sample 02</div>
-        </div>
-        <div class="body">
-          <span class="badge">範例 2</span>
-          <h3>關於無毒農 · 變化版</h3>
-          <p>滿版 Hero overlay、4 個大方型 stat 卡、2×2 步驟、3-col icon 加工品、3-col 圖文水產卡、滿版 CTA。同規範下的不同版型探索。</p>
-          <div class="actions">
-            <a class="btn-primary" href="plan-a/sample2.html">純設計版</a>
-            <a class="btn-secondary" href="plan-a/sample2-greenbox.html">套官網殼</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Section C ═══ -->
-<section class="section alt" id="plan-c">
-  <div class="container">
-    <span class="sec-num">方案 C · Plan C</span>
-    <h2 class="sec-title">文青版 — 主流 AI 預設框架</h2>
-    <p class="sec-intro">主色完全沿用無毒農品牌色（不另創），但<strong>字型升級為 Noto Serif TC、圓角全部 0px、Section padding 112~128px</strong>。對齊主流 AI 在「無提示」時自然會產生的設計風格——襯線標題 + 大留白 + 大圖。</p>
-
-    <div class="grid">
-      <!-- C 預覽 -->
-      <article class="card">
-        <div class="thumb preview serif">
-          <div class="thumb-num">C</div>
-          <div class="thumb-tag serif">Spec Overview</div>
-        </div>
-        <div class="body">
-          <span class="badge">規範總覽</span>
-          <h3 class="serif">方案 C · 規範頁</h3>
-          <p>文青風格的色票延伸、字級階層、Section 留白尺度、圖文搭配 sticky 規則等完整規範說明。</p>
-          <div class="actions">
-            <a class="btn-primary" href="plan-c/preview.html">查看規範</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- C 範例 1 -->
-      <article class="card">
-        <div class="thumb sample-c serif">
-          <div class="thumb-num">01</div>
-          <div class="thumb-tag serif">Sample 01</div>
-        </div>
-        <div class="body">
-          <span class="badge">範例 1</span>
-          <h3 class="serif">關於無毒農</h3>
-          <p>60/40 不對稱 Hero、4:5 直立 split-block、Serif italic figcaption、超大引述句、深色 promise quote。文青版基本式。</p>
-          <div class="actions">
-            <a class="btn-primary" href="plan-c/sample1.html">純設計版</a>
-            <a class="btn-secondary" href="plan-c/sample1-greenbox.html">套官網殼</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- C 範例 2 -->
-      <article class="card">
-        <div class="thumb sample-c serif">
-          <div class="thumb-num">02</div>
-          <div class="thumb-tag serif">Sample 02</div>
-        </div>
-        <div class="body">
-          <span class="badge">範例 2</span>
-          <h3 class="serif">關於無毒農 · 變化版</h3>
-          <p>上下堆疊 Hero、超大 80px Pull quote、大編號 lead-in、vertical timeline、深森林綠 panel、2×2 大編號 pillars。文青版不同編排。</p>
-          <div class="actions">
-            <a class="btn-primary" href="plan-c/sample2.html">純設計版</a>
-            <a class="btn-secondary" href="plan-c/sample2-greenbox.html">套官網殼</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Comparison ═══ -->
-<section class="compare-section" id="compare">
-  <div class="container">
-    <span class="sec-num">方案對照</span>
-    <h2 class="sec-title">A 跟 C 差在哪？</h2>
-    <p class="sec-intro">兩個方案都以無毒農主色 #4ba83b 為基礎，差異全在字型、版型、間距、留白尺度上。</p>
-
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>項目</th>
-          <th>方案 A · 踏實</th>
-          <th>方案 C · 文青</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="label">主色</td>
-          <td><span class="plan-a-cell">#4ba83b（不變）</span></td>
-          <td><span class="plan-c-cell">#4ba83b（不變）+ 兩個延伸色</span></td>
-        </tr>
-        <tr>
-          <td class="label">字型</td>
-          <td>Noto Sans TC</td>
-          <td><span class="plan-c-cell">Noto Serif TC（標題）+ Noto Sans TC（內文）</span></td>
-        </tr>
-        <tr>
-          <td class="label">字重</td>
-          <td>700 / 600 / 500 / 400</td>
-          <td><span class="plan-c-cell">500（中等，不要 600/700 太陽剛）</span></td>
-        </tr>
-        <tr>
-          <td class="label">圓角</td>
-          <td>4px</td>
-          <td><span class="plan-c-cell">0px（極簡）</span></td>
-        </tr>
-        <tr>
-          <td class="label">Section padding（桌機）</td>
-          <td>64px</td>
-          <td><span class="plan-c-cell">112~128px（大留白）</span></td>
-        </tr>
-        <tr>
-          <td class="label">容器寬度</td>
-          <td>1140px</td>
-          <td><span class="plan-c-cell">880px（精緻收窄）</span></td>
-        </tr>
-        <tr>
-          <td class="label">Hero 高度</td>
-          <td>50/50 圖文比例</td>
-          <td><span class="plan-c-cell">84~90vh，4:5 直立圖</span></td>
-        </tr>
-        <tr>
-          <td class="label">Banner 比例（桌機）</td>
-          <td>16:9</td>
-          <td><span class="plan-c-cell">21:9 寬螢幕</span></td>
-        </tr>
-        <tr>
-          <td class="label">推估改版工程量</td>
-          <td>低（沿用既有元件）</td>
-          <td><span class="plan-c-cell">高（攝影 brief、行銷文案、客服訓練皆需重做）</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ═══ Footer ═══ -->
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div>
-        <h4>GreenBox Design System</h4>
-        <p>無毒農 Design System v1<br>規範化現有風格 + AI 友善框架探索</p>
       </div>
-      <div>
-        <h4>方案</h4>
-        <ul>
-          <li><a href="#plan-a">方案 A · 踏實</a></li>
-          <li><a href="#plan-c">方案 C · 文青</a></li>
-          <li><a href="#compare">方案對照</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>連結</h4>
-        <ul>
-          <li><a href="https://github.com/glenwen-soohoo/greenbox-design-system" target="_blank" rel="noopener">GitHub Repository</a></li>
-          <li><a href="https://greenbox.tw" target="_blank" rel="noopener">無毒農官網</a></li>
-        </ul>
+
+      <div class="group">
+        <h2>Plan C</h2>
+        <div class="group-name">文青版</div>
+        <div class="btn-stack">
+          <a class="btn" href="plan-c/preview.html">
+            <span>方案 C · 規範總覽</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn" href="plan-c/sample1.html">
+            <span>方案 C · 範例 1</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn" href="plan-c/sample2.html">
+            <span>方案 C · 範例 2</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
-    <p class="bottom">© 2026 GreenBox · Design System 由內部團隊與 AI 協作整理</p>
   </div>
+</main>
+
+<footer>
+  © 2026 GreenBox · <a href="https://github.com/glenwen-soohoo/greenbox-design-system" target="_blank" rel="noopener">View on GitHub</a>
 </footer>
 
 </body>
