@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>關於無毒農 — 產品嚴選標準</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    line-height: 1.6;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  :root {
+    --green-main: #4ba83b;
+    --green-dark: #008000;
+    --warn: #dc4e43;
+    --stock: #eb6100;
+    --blog-gold: #CAA940;
+    --frozen: #5cb0df;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595757;
+    --text-muted: #999;
+    --bg-white: #ffffff;
+    --bg-gray: #ecf0f1;
+    --bg-success: #f0f9ec;
+    --radius: 4px;
+  }
+
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── Top nav ─── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: #fff;
+    border-bottom: 1px solid var(--bg-gray);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav .brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-main);
+    letter-spacing: 0.04em;
+  }
+  .nav .brand small {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-left: 6px;
+    letter-spacing: 0.2em;
+  }
+  .nav .menu { display: flex; gap: 32px; font-size: 15px; }
+  .nav .menu a {
+    color: var(--text-secondary);
+    padding: 6px 0;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav .menu a:hover, .nav .menu a.active { color: var(--green-main); }
+  .nav .nav-cta {
+    background: var(--green-main);
+    color: #fff;
+    padding: 10px 22px;
+    font-weight: 500;
+    border-radius: var(--radius);
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .nav .nav-cta:hover { background: var(--green-dark); }
+
+  /* ─── Container & section ─── */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 64px 0; background: var(--bg-white); }
+  .section.bg-gray { background: var(--bg-gray); }
+  .section.bg-success { background: var(--bg-success); }
+
+  /* ─── Hero ─── */
+  .hero {
+    padding: 64px 0;
+  }
+  .hero .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero .h-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #d8dde0;
+  }
+  .hero .h-image img { width: 100%; height: 100%; object-fit: cover; }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--green-dark);
+    margin-bottom: 16px;
+  }
+  .hero h1 + p.sub {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--green-main);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .hero .lead {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+  }
+  .hero .lead strong { color: var(--green-dark); font-weight: 600; }
+
+  /* ─── Buttons ─── */
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    font-family: inherit;
+    line-height: 1.4;
+  }
+  .btn-primary {
+    background: var(--green-main);
+    color: #fff;
+    border-color: var(--green-main);
+  }
+  .btn-primary:hover {
+    background: #fff;
+    color: var(--green-main);
+  }
+  .btn-secondary {
+    background: #fff;
+    color: var(--green-main);
+    border-color: var(--green-main);
+  }
+  .btn-secondary:hover {
+    background: var(--green-main);
+    color: #fff;
+  }
+
+  /* ─── Stat grid（4 cells） ─── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    border-top: 1px solid var(--bg-gray);
+    border-bottom: 1px solid var(--bg-gray);
+    padding: 32px 0;
+    margin-top: 48px;
+  }
+  .stat-cell { text-align: center; padding: 0 12px; }
+  .stat-cell .stat-num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--green-main);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .stat-cell .stat-num small {
+    font-size: 0.5em;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-left: 2px;
+  }
+  .stat-cell .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── 科學驗證 section ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .why-grid .why-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #d8dde0;
+  }
+  .why-grid .why-image img { width: 100%; height: 100%; object-fit: cover; }
+  .why-grid h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .why-grid p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+  .why-grid p strong { color: var(--green-dark); font-weight: 600; }
+
+  /* ─── Section heading ─── */
+  .sec-num {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--green-main);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .sec-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .sec-intro {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+    max-width: 720px;
+  }
+
+  /* ─── 兩級卡片（蔬果） ─── */
+  .level-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .level-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 32px;
+    border: 1px solid #e0e4e6;
+  }
+  .level-card .tag {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--green-main);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .level-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+  }
+  .level-card p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+  .level-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .level-card ul li {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-primary);
+    padding: 6px 0 6px 24px;
+    position: relative;
+  }
+  .level-card ul li:before {
+    content: '\2714';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    color: var(--green-main);
+    font-weight: 700;
+  }
+
+  /* ─── 4 步驟 ─── */
+  .step-section { padding: 64px 0; background: #fff; }
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .step-card { background: #fff; }
+  .step-card .step-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #d8dde0;
+    margin-bottom: 16px;
+  }
+  .step-card .step-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .step-card:hover .step-img img { transform: scale(1.04); }
+  .step-card .step-num {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--green-main);
+    font-weight: 600;
+    background: var(--bg-success);
+    padding: 3px 10px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .step-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+  .step-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  /* ─── 水產 21:9 banner ─── */
+  .seafood-banner {
+    margin-bottom: 40px;
+  }
+  .seafood-banner img {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius);
+    background: #d8dde0;
+  }
+  .seafood-banner figcaption {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ─── 加工品 / 水產 sub-card ─── */
+  .sub-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 24px 32px;
+    border: 1px solid #e0e4e6;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+  .sub-card .sub-num {
+    font-size: 14px;
+    color: var(--green-main);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding-top: 4px;
+  }
+  .sub-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+  }
+  .sub-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sub-card ul li {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-primary);
+    padding: 4px 0 4px 24px;
+    position: relative;
+  }
+  .sub-card ul li:before {
+    content: '\2714';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--green-main);
+    font-weight: 700;
+  }
+  .sub-card .chip {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green-main);
+    background: var(--bg-success);
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    white-space: nowrap;
+  }
+
+  /* ─── 透明公告 4 pillar ─── */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .pillar {
+    text-align: left;
+    padding: 24px;
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid #e0e4e6;
+  }
+  .pillar .icon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-success);
+    color: var(--green-main);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .pillar h4 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+  .pillar p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  /* ─── 大 CTA ─── */
+  .cta-section {
+    padding: 80px 0;
+    text-align: center;
+    background: #fff;
+  }
+  .cta-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .cta-section p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ─── Footer ─── */
+  .footer-note {
+    background: #fff;
+    padding: 32px 0;
+    border-top: 1px solid var(--bg-gray);
+    text-align: center;
+  }
+  .footer-note p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer .footer-brand { font-size: 14px; color: #ccc; }
+  .footer .footer-links { display: flex; gap: 24px; font-size: 13px; }
+  .footer .footer-links a { color: #999; transition: color 0.2s; }
+  .footer .footer-links a:hover { color: #fff; }
+
+  /* ─── Mobile RWD ─── */
+  @media (max-width: 1199px) {
+    .container { padding: 0 24px; }
+    .hero .grid, .why-grid { gap: 32px; }
+    .step-grid, .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-grid { gap: 12px; }
+  }
+  @media (max-width: 768px) {
+    body { font-size: 16px; }
+    .nav { padding: 12px 16px; }
+    .nav .menu { display: none; }
+    .nav .brand { font-size: 18px; }
+    .container { padding: 0 16px; }
+    .section, .step-section, .hero { padding: 32px 0; }
+    .cta-section { padding: 48px 0; }
+    .hero .grid, .why-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .hero h1 { font-size: 28px; }
+    .hero h1 + p.sub { font-size: 18px; }
+    .why-grid h2, .sec-title, .cta-section h2 { font-size: 22px; }
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 20px 0;
+      margin-top: 32px;
+    }
+    .stat-cell .stat-num { font-size: 28px; }
+    .level-grid { grid-template-columns: 1fr; gap: 16px; }
+    .step-grid { grid-template-columns: 1fr; gap: 16px; }
+    .pillar-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .level-card, .pillar { padding: 20px; }
+    .sub-card {
+      grid-template-columns: 1fr;
+      padding: 20px;
+      gap: 12px;
+    }
+    .sub-card .chip { justify-self: start; }
+    .footer { flex-direction: column; padding: 20px 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <a href="#" class="brand">無毒農 <small>GREENBOX</small></a>
+  <div class="menu">
+    <a href="#">首頁</a>
+    <a href="#">食品</a>
+    <a href="#" class="active">關於我們</a>
+    <a href="#">Blog</a>
+  </div>
+  <a href="#" class="nav-cta">立即購買</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="grid">
+      <div class="h-image">
+        <img src="https://images.unsplash.com/photo-1634114042751-527be6421f41?w=1600&q=80&auto=format&fit=crop" alt="新鮮蔬果：高麗菜、紅蘿蔔、洋蔥、馬鈴薯">
+      </div>
+      <div>
+        <h1>每一口食物，都是一個選擇。</h1>
+        <p class="sub">選擇相信，或選擇懷疑。</p>
+        <p class="lead">台灣農藥用量每公頃 <strong>17 公斤</strong>，高於日本的 11 公斤。走訪各地產區的過程中，我們看見土地的負擔、農友的辛苦，也看見消費者對食安的疑慮與不安——那些無法言說的擔心，是我們創立無毒農最深的動力。</p>
+        <a href="#vegetable" class="btn btn-primary">查看嚴選標準</a>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">365<small>天</small></div>
+        <div class="stat-label">每日篩檢、全年不間斷</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1/2</div>
+        <div class="stat-label">殘留量 ≤ 國家公告標準</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">&lt; 7<small>種</small></div>
+        <div class="stat-label">檢出藥物種類限制</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">千萬等級</div>
+        <div class="stat-label">全台唯一質譜篩檢實驗室</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 科學驗證 ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <h2>科學驗證，不只口號。</h2>
+        <p>無毒農是全台唯一耗資千萬，投資由國家藥毒所技術轉移的「<strong>質譜篩檢實驗室</strong>」的農產電商平台，採用最尖端的農藥殘留檢驗技術。</p>
+        <p>每一批產品皆經科學方式驗證，才能上架販售。我們不只守護消費者的健康，也陪伴農友走向更友善的耕作方式——這需要農友的堅持、消費者的支持，還有一個願意承擔責任的平台，三方一起走。</p>
+      </div>
+      <figure class="why-image">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1600&q=80&auto=format&fit=crop" alt="實驗室玻璃器皿：燒杯、錐形瓶與滴管">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 一、蔬果農產品標準 ═══ -->
+<section class="section bg-gray" id="vegetable">
+  <div class="container">
+    <span class="sec-num">一、蔬果農產品標準</span>
+    <h2 class="sec-title">一顆蔬果走過的每一步，<br>我們都想為你記錄下來。</h2>
+    <p class="sec-intro">無毒農將蔬果依農藥殘留情況分為兩大等級，清楚標示於產品頁面。</p>
+
+    <div class="level-grid">
+      <div class="level-card">
+        <span class="tag">第一級</span>
+        <h3>有機認證</h3>
+        <p>具備有機標章，符合政府規範之有機驗證農產品。這是農友對土地最深的承諾，我們為他們的堅持驕傲。</p>
+        <ul>
+          <li>具備政府有機標章</li>
+          <li>符合有機農業促進法規範</li>
+          <li>每批產品皆可追蹤履歷</li>
+        </ul>
+      </div>
+      <div class="level-card">
+        <span class="tag">第二級</span>
+        <h3>無毒農標準</h3>
+        <p>不一定有一張認證書，但每一批都有數字說話：</p>
+        <ul>
+          <li>農藥殘留零檢出，或殘留量低於國家公告標準的 1/2</li>
+          <li>檢出藥物種類低於 7 種</li>
+          <li>每批作物皆經質譜普篩法檢驗，全台唯一每天篩檢的農產電商平台，365 天不間斷</li>
+          <li>驗出超標一律報廢、不上架</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 從產地到餐桌 4 步驟 ═══ -->
+<section class="step-section" id="process">
+  <div class="container">
+    <h2 class="sec-title">從產地到餐桌，每一批都經過四道關。</h2>
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1519897831810-a9a01aceccd1?w=800&q=80&auto=format&fit=crop" alt="農友親手採收新鮮蔬菜">
+        </div>
+        <span class="step-num">01</span>
+        <h4>產地探訪</h4>
+        <p>合作農友深度訪談，所有產地實地探訪，減少中間轉手。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80&auto=format&fit=crop" alt="實驗室微孔板與滴管">
+        </div>
+        <span class="step-num">02</span>
+        <h4>質譜普篩</h4>
+        <p>每批送入千萬等級質譜實驗室，篩檢百種以上農藥殘留。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop" alt="檢驗數據儀錶板">
+        </div>
+        <span class="step-num">03</span>
+        <h4>數據公告</h4>
+        <p>檢驗結果每日於「安心檢驗日報」公告，可即時查閱。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1690067698032-7b966be1d56e?w=800&q=80&auto=format&fit=crop" alt="農夫手持新鮮蔬菜箱">
+        </div>
+        <span class="step-num">04</span>
+        <h4>產地直送</h4>
+        <p>低溫物流直送，產地可溯源、保障小農合理收入。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 二、農產加工品標準 ═══ -->
+<section class="section bg-gray" id="processed">
+  <div class="container">
+    <span class="sec-num">二、農產加工品標準</span>
+    <h2 class="sec-title">食物本來的好，<br>不需要添加物堆砌。</h2>
+    <p class="sec-intro">加工品是食材的另一種面貌。我們希望它保留的是食物本來的好，而不是用添加物堆砌出來的味道。</p>
+
+    <div class="sub-card">
+      <span class="sub-num">基本要求</span>
+      <ul>
+        <li>不含人工調味劑、人工調味香精、防腐劑</li>
+        <li>食品添加物完全符合食品法規</li>
+        <li>符合一般食品衛生標準</li>
+      </ul>
+      <span class="chip">三項加工底線</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 三、水產品標準 ═══ -->
+<section class="section" id="seafood">
+  <div class="container">
+    <figure class="seafood-banner">
+      <img src="https://images.unsplash.com/photo-1611214774777-3d997a9d0e35?w=1600&q=80&auto=format&fit=crop" alt="新鮮捕撈水產冰鎮陳列">
+      <figcaption>從養殖池到餐桌，每個環節我們都想做到問心無愧。</figcaption>
+    </figure>
+    <span class="sec-num">三、水產品標準</span>
+    <h2 class="sec-title">海洋給我們的禮物，<br>我們有責任好好對待。</h2>
+    <p class="sec-intro">從養殖池到餐桌，每個環節我們都想做到問心無愧。水產品依來源分為三類，標準各有不同。</p>
+
+    <div class="sub-card">
+      <span class="sub-num">3.1</span>
+      <div>
+        <h4>養殖水產</h4>
+        <ul>
+          <li>不使用非法水產育成飼料</li>
+          <li>不施用水產動物用藥為優先；如必要使用，須符合規範並附殘留檢驗</li>
+          <li>低溫處理、急速冷凍保鮮，不添加防腐劑、殺菌劑、漂白劑</li>
+        </ul>
+      </div>
+      <span class="chip">急速冷凍</span>
+    </div>
+
+    <div class="sub-card">
+      <span class="sub-num">3.2</span>
+      <div>
+        <h4>捕撈水產</h4>
+        <ul>
+          <li>以台灣海域捕撈之水產品為優先</li>
+          <li>符合合法漁業規範（非 IUU 非法漁業）</li>
+        </ul>
+      </div>
+      <span class="chip">海洋友善</span>
+    </div>
+
+    <div class="sub-card">
+      <span class="sub-num">3.3</span>
+      <div>
+        <h4>水產加工</h4>
+        <ul>
+          <li>主原料均符合上述標準</li>
+          <li>不添加化學保質藥劑為優先；如食品安全需要，需完全符合食品添加物使用規範</li>
+        </ul>
+      </div>
+      <span class="chip">嚴選原料</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 透明公告 ═══ -->
+<section class="section bg-gray" id="transparency">
+  <div class="container">
+    <span class="sec-num">透明公告與消費保障</span>
+    <h2 class="sec-title">安全，不容妥協。</h2>
+    <p class="sec-intro">所有產品的資訊，均透過以下四種方式公開揭露。</p>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="icon">&#10004;</div>
+        <h4>安心檢驗日報</h4>
+        <p>每日公告當日篩檢結果，消費者可即時查閱。</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">&#10004;</div>
+        <h4>PGS 參與式驗證</h4>
+        <p>強化消費者與農友之間的連結，與消費者共同分擔從產地到餐桌的把關責任。</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">&#10004;</div>
+        <h4>食品安全險</h4>
+        <p>無毒農投保食品安全險，您消費安心，我們更用心。</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">&#10004;</div>
+        <h4>產地直送可溯源</h4>
+        <p>大多商品採產地直銷，減少中間商剝削，保障小農合理收入。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 大 CTA ═══ -->
+<section class="cta-section">
+  <div class="container">
+    <h2>選擇相信，從第一籃菜開始。</h2>
+    <p>用具體的數字、365 天不間斷的檢驗、產地到餐桌的承諾，回應您每天的選擇。</p>
+    <div class="cta-row">
+      <a href="#" class="btn btn-primary">立即挑選蔬果</a>
+      <a href="#" class="btn btn-secondary">查看安心檢驗日報</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<div class="footer-note">
+  <div class="container">
+    <p>本標準資訊以官網公告為準。無毒農保留依食安法規、科學研究及環境條件調整標準之權利，所有調整均會提前公告，並於產品頁面如實說明。</p>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-brand">© 2026 GreenBox 無毒農 ｜ 統一編號 12345678</div>
+  <div class="footer-links">
+    <a href="#">隱私權政策</a>
+    <a href="#">服務條款</a>
+  </div>
+</footer>
+
+</body>
+</html>

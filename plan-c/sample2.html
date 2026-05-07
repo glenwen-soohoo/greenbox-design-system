@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無毒農 ｜ 產品嚴選標準（範例 2）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    line-height: 1.85;
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  :root {
+    --green-main: #4ba83b;
+    --green-dark: #008000;
+    --warn: #dc4e43;
+    --stock: #eb6100;
+    --blog-gold: #CAA940;
+    --frozen: #5cb0df;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595757;
+    --text-muted: #999;
+    --bg-white: #ffffff;
+    --bg-gray: #ecf0f1;
+    --green-deep: #1F4A1F;
+    --green-pale: #EFF5E5;
+  }
+
+  img { display: block; max-width: 100%; height: auto; }
+
+  /* ─── Top nav ─── */
+  .nav {
+    position: sticky; top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--bg-gray);
+    padding: 20px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  .nav .brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--green-dark);
+    letter-spacing: 0.06em;
+  }
+  .nav .menu { display: flex; gap: 36px; font-size: 14px; }
+  .nav .menu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .nav .menu a:hover { color: var(--green-dark); }
+  .nav .menu a.active { color: var(--green-dark); border-bottom-color: var(--green-main); }
+
+  /* ─── Hero v2：上下堆疊（上文下圖 21:9）─── */
+  .hero-v2-text {
+    background: var(--bg-white);
+    padding: 144px 80px 96px;
+    text-align: center;
+  }
+  .hero-v2-text .label {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--green-main);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+  }
+  .hero-v2-text h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(44px, 6.5vw, 80px);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: var(--green-dark);
+    margin: 0 auto 40px;
+    max-width: 880px;
+  }
+  .hero-v2-text .subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.85;
+  }
+  .hero-v2-img {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    background: #d8dde0;
+  }
+  .hero-v2-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ─── Container & section ─── */
+  .container { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+  .container-wide { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .container-full { width: 100%; padding: 0 32px; }
+  .section { padding: 128px 0; background: var(--bg-white); }
+  .section.bg-gray { background: var(--bg-gray); }
+  .section.bg-pale { background: var(--green-pale); }
+  .section.no-pad-bottom { padding-bottom: 0; }
+  .section.flush { padding: 0; }
+
+  /* ─── Pull quote v2：超大字、無線條、純置中 ─── */
+  .pull-quote-v2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--green-dark);
+    text-align: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    letter-spacing: 0.02em;
+  }
+  .pull-quote-v2 strong {
+    color: var(--green-main);
+    font-weight: 500;
+  }
+
+  /* ─── Section heading（共用） ─── */
+  .sec-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--green-main);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .sec-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--green-dark);
+    margin-bottom: 48px;
+    max-width: 720px;
+    letter-spacing: 0.01em;
+  }
+  .sec-text {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+    max-width: 720px;
+    font-weight: 400;
+  }
+  .sec-text strong {
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+
+  /* ─── Why we exist v2：split-block reverse 4:5（圖右文左）─── */
+  .why-block {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .why-text {
+    padding-right: 24px;
+  }
+  .why-image {
+    position: sticky;
+    top: 80px;
+  }
+  .why-image .img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #d8dde0;
+  }
+  .why-image .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .why-image figcaption {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 900px) {
+    .why-block {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .why-text { padding-right: 0; order: 2; }
+    .why-image {
+      position: static;
+      top: auto;
+      order: 1;
+    }
+    .why-image .img-wrap { aspect-ratio: 4 / 3; }
+  }
+
+  /* ─── 數據對比（vertical stack 版本） ─── */
+  .stat-stack {
+    margin: 64px 0;
+    padding: 48px 0;
+    border-top: 1px solid var(--bg-gray);
+    border-bottom: 1px solid var(--bg-gray);
+  }
+  .stat-stack .stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 12px;
+  }
+  .stat-stack .stat-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    min-width: 80px;
+    text-transform: uppercase;
+  }
+  .stat-stack .stat-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(48px, 6vw, 64px);
+    font-weight: 500;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+  .stat-stack .stat-num small {
+    font-size: 0.4em;
+    color: var(--text-muted);
+    margin-left: 6px;
+    font-weight: 400;
+  }
+  .stat-stack .stat-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 24px;
+    line-height: 1.7;
+  }
+
+  /* ─── 大編號 lead（Standard 區塊用，主綠 18% 透明度）─── */
+  .num-lead {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 400;
+    line-height: 0.9;
+    color: rgba(75, 168, 59, 0.22);
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+    user-select: none;
+  }
+
+  /* ─── Standard heading（v2 共用） ─── */
+  .standard-num {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--green-main);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .standard-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500;
+    color: var(--green-dark);
+    margin-bottom: 32px;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+  }
+  .standard-intro {
+    font-size: 18px;
+    line-height: 1.9;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    max-width: 720px;
+  }
+
+  /* ─── 21:9 全幅圖（Standard 01 用） ─── */
+  .feature-img {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    /* 不設 left/right margin，讓 container-wide 的 margin:0 auto 接管置中 */
+  }
+  .feature-img .img-wrap {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    background: #d8dde0;
+  }
+  .feature-img .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .feature-img figcaption {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── Vertical timeline（sub-standards 用）─── */
+  .timeline {
+    position: relative;
+    padding-left: 48px;
+    margin-top: 64px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 0;
+    width: 1px;
+    background: var(--green-main);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -52px;
+    top: 14px;
+    width: 9px;
+    height: 9px;
+    background: var(--green-main);
+    border-radius: 50%;
+  }
+  .timeline-tag {
+    display: inline-block;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--green-main);
+    border: 1px solid var(--green-main);
+    padding: 5px 14px;
+    margin-bottom: 16px;
+  }
+  .timeline-item h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--green-dark);
+    margin-bottom: 18px;
+    letter-spacing: 0.01em;
+  }
+  .timeline-item p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+  .timeline-item ul {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+  }
+  .timeline-item ul li {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-primary);
+    padding: 10px 0 10px 24px;
+    position: relative;
+    max-width: 720px;
+  }
+  .timeline-item ul li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 21px;
+    width: 12px;
+    height: 1px;
+    background: var(--green-main);
+  }
+  @media (max-width: 768px) {
+    .timeline { padding-left: 32px; }
+    .timeline-item::before { left: -36px; }
+  }
+
+  /* ─── 三圖網格（Standard 02 v2 用）─── */
+  .triple-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 80px;
+  }
+  .triple-grid figure { margin: 0; }
+  .triple-grid .img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #d8dde0;
+  }
+  .triple-grid .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .triple-grid figcaption {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .triple-grid { grid-template-columns: 1fr; gap: 24px; }
+    .triple-grid .img-wrap { aspect-ratio: 4 / 3; }
+  }
+
+  /* ─── Standard 02 中央文字塊 ─── */
+  .center-text {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .center-text .standard-num,
+  .center-text .standard-title { text-align: center; }
+  .center-text .standard-title { margin: 0 auto 32px; }
+  .center-text .standard-intro { margin: 0 auto 48px; text-align: center; }
+  .center-text ul {
+    list-style: none;
+    margin: 48px auto 0;
+    padding: 48px 0 0;
+    border-top: 1px solid var(--bg-gray);
+    max-width: 540px;
+    text-align: left;
+  }
+  .center-text ul li {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-primary);
+    padding: 12px 0 12px 28px;
+    position: relative;
+  }
+  .center-text ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 23px;
+    width: 14px;
+    height: 1px;
+    background: var(--green-main);
+  }
+
+  /* ─── Standard 03 v2：split-block reverse + timeline 在文字側 ─── */
+  .standard-split {
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .standard-split .split-text { padding-right: 24px; }
+  .standard-split .split-image {
+    position: sticky;
+    top: 80px;
+  }
+  .standard-split .split-image .img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #d8dde0;
+  }
+  .standard-split .split-image .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .standard-split .split-image figcaption {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 900px) {
+    .standard-split {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .standard-split .split-text { padding-right: 0; order: 2; }
+    .standard-split .split-image {
+      position: static;
+      top: auto;
+      order: 1;
+    }
+    .standard-split .split-image .img-wrap { aspect-ratio: 4 / 3; }
+  }
+
+  /* ─── Promise quote v2：深森林綠全幅 panel ─── */
+  .promise-panel {
+    background: var(--green-deep);
+    padding: 144px 32px;
+    color: #fff;
+    text-align: center;
+  }
+  .promise-panel .label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--green-pale);
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+  .promise-panel .ornament {
+    width: 32px;
+    height: 1px;
+    background: var(--green-main);
+    margin: 0 auto 40px;
+  }
+  .promise-panel p {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.55;
+    color: #fff;
+    letter-spacing: 0.01em;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .promise-panel p strong {
+    color: #fff;
+    font-weight: 500;
+    border-bottom: 1px solid var(--green-main);
+    padding-bottom: 2px;
+  }
+
+  /* ─── 透明公告 v2：2x2 網格 + 大編號 ─── */
+  .pillar-grid-v2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 64px;
+    margin-top: 80px;
+  }
+  .pillar-v2 {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .pillar-v2 .num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--green-main);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .pillar-v2 .body { padding-top: 4px; }
+  .pillar-v2 h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+  .pillar-v2 p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 768px) {
+    .pillar-grid-v2 { grid-template-columns: 1fr; gap: 48px; }
+    .pillar-v2 { grid-template-columns: 60px 1fr; gap: 24px; }
+    .pillar-v2 .num { font-size: 44px; }
+  }
+
+  /* ─── Buttons ─── */
+  .cta-row {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 80px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-family: inherit;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .btn-primary { background: var(--green-main); color: #fff; }
+  .btn-primary:hover { background: var(--green-dark); }
+  .btn-text {
+    background: transparent;
+    color: var(--green-dark);
+    border-bottom: 1px solid var(--green-dark);
+    padding: 4px 0;
+  }
+  .btn-text:hover { color: var(--green-main); border-bottom-color: var(--green-main); }
+
+  /* ─── Footer ─── */
+  .footer {
+    background: var(--bg-gray);
+    color: var(--text-secondary);
+    padding: 80px 48px 48px;
+    text-align: center;
+  }
+  .footer .ornament {
+    width: 32px;
+    height: 1px;
+    background: var(--green-main);
+    margin: 0 auto 28px;
+  }
+  .footer .note {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+  .footer .meta {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  /* ─── Mobile RWD ─── */
+  @media (max-width: 768px) {
+    body { font-size: 16px; }
+    .nav { padding: 16px 24px; }
+    .nav .menu { display: none; }
+    .hero-v2-text { padding: 80px 24px 56px; }
+    .section { padding: 80px 0; }
+    .container, .container-wide, .container-full { padding: 0 24px; }
+    .promise-panel { padding: 80px 24px; }
+    .footer { padding: 56px 24px 32px; }
+    .num-lead { margin-bottom: 24px; }
+    .feature-img { margin: 56px 0; }
+    .stat-stack .stat-row { flex-direction: column; align-items: flex-start; gap: 4px; margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="brand">無毒農</div>
+  <div class="menu">
+    <a href="#">關於</a>
+    <a href="#" class="active">產品標準</a>
+    <a href="#">商品</a>
+    <a href="#">部落格</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO v2：上下堆疊（上文下圖 21:9 全幅）═══ -->
+<header class="hero-v2-text">
+  <div class="label">Product Standards</div>
+  <h1>每一口食物，都是一個選擇。</h1>
+  <p class="subtitle">無毒農的產品嚴選標準。我們相信，消費者有權利知道自己吃的東西從哪裡來、怎麼種的、農藥殘留幾種、檢驗數字是多少。</p>
+</header>
+<div class="hero-v2-img">
+  <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=2000&q=80&auto=format&fit=crop" alt="清晨的有機蔬菜田">
+</div>
+
+<!-- ═══ Pull quote v2：超大字、無線條 ═══ -->
+<section class="section">
+  <div class="container-wide">
+    <p class="pull-quote-v2">選擇相信，<strong>或選擇懷疑</strong>。</p>
+  </div>
+</section>
+
+<!-- ═══ Why we exist v2：split-block reverse 4:5（圖右文左）═══ -->
+<section class="section bg-gray">
+  <div class="why-block">
+    <div class="why-text">
+      <div class="sec-label">Why we exist</div>
+      <h2 class="sec-title">為什麼我們需要嚴選標準？</h2>
+
+      <p class="sec-text">走訪各地產區的過程中，我們看見土地的負擔、農友的辛苦，也看見消費者對食安的疑慮與不安。那些無法言說的擔心——餐桌上的蔬果到底安不安全？孩子吃進去的東西到底有沒有問題？——是我們創立無毒農最深的動力。</p>
+
+      <div class="stat-stack">
+        <div class="stat-row">
+          <span class="stat-label">Taiwan</span>
+          <span class="stat-num">17<small>kg / ha</small></span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Japan</span>
+          <span class="stat-num">11<small>kg / ha</small></span>
+        </div>
+        <p class="stat-desc">台灣農藥用量每公頃 17 公斤，高於日本的 11 公斤。</p>
+      </div>
+
+      <p class="sec-text">無毒農成立的初衷，是用信任連結產地和餐桌。不是口號，是承諾。因此，無毒農是<strong>全台唯一耗資千萬，投資由國家藥毒所技術轉移的「質譜篩檢實驗室」</strong>的農產電商平台。</p>
+
+      <p class="sec-text">我們不只守護消費者的健康，也陪伴農友走向更友善的耕作方式。改變土地不是一夜之間的事——而是需要農友的堅持、消費者的支持，還有一個願意承擔責任的平台，三方一起走。</p>
+    </div>
+    <figure class="why-image">
+      <div class="img-wrap">
+        <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=900&q=80&auto=format&fit=crop" alt="質譜篩檢實驗室">
+      </div>
+      <figcaption>質譜篩檢實驗室，由國家藥毒所技術轉移。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══ Standard 01 蔬果 v2：大編號 + 21:9 全幅圖 + timeline ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="num-lead">01</div>
+    <div class="standard-num">Standard 01</div>
+    <h2 class="standard-title">蔬果農產品標準</h2>
+    <p class="standard-intro">一顆蔬果從土裡長出來，經歷陽光、風雨、蟲害，再輾轉來到你的餐桌。它走過的每一步，我們都想為你記錄下來。無毒農將產品依農藥殘留情況分為兩大等級。</p>
+  </div>
+
+  <figure class="feature-img container-wide">
+    <div class="img-wrap">
+      <img src="https://images.unsplash.com/photo-1518994603110-1912b3272afd?w=2000&q=80&auto=format&fit=crop" alt="無毒農合作的蔬果產區">
+    </div>
+    <figcaption>每一批上架的蔬果都經過質譜普篩，全台唯一每天篩檢的農產電商平台。</figcaption>
+  </figure>
+
+  <div class="container">
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-tag">第一級</span>
+        <h4>有機認證</h4>
+        <p>具備有機標章，符合政府規範之有機驗證農產品。這是農友對土地最深的承諾，我們為他們的堅持驕傲。</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-tag">第二級</span>
+        <h4>無毒農標準</h4>
+        <p>符合無毒農平台自訂標準之農產品。不一定有一張認證書，但每一批都有數字說話：</p>
+        <ul>
+          <li>農藥殘留零檢出，或農藥殘留量低於國家公告標準的二分之一以下</li>
+          <li>檢出藥物種類低於 7 種以下</li>
+          <li>每批作物皆經質譜普篩法檢驗，365 天不間斷</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Promise quote v2：深森林綠全幅 panel ═══ -->
+<section class="promise-panel">
+  <div class="label">Our promise</div>
+  <div class="ornament"></div>
+  <p>我們是全台唯一實施農產品天天檢驗的電商平台。<strong>蔬果若驗出農藥超標，不符合平台標準，一律報廢銷毀</strong>。「安全」不容妥協，也只有如此把關才能做到讓消費者「安心」。</p>
+</section>
+
+<!-- ═══ Standard 02 加工品 v2：三圖網格 + 中央文字 ═══ -->
+<section class="section bg-gray">
+  <div class="container-wide">
+    <div class="triple-grid">
+      <figure>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1698843813573-1d090c34ea5d?w=900&q=80&auto=format&fit=crop" alt="天然果醬">
+        </div>
+        <figcaption>天然果醬</figcaption>
+      </figure>
+      <figure>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1777827666784-0344a987f45b?w=900&q=80&auto=format&fit=crop" alt="醃漬保存品">
+        </div>
+        <figcaption>醃漬保存品</figcaption>
+      </figure>
+      <figure>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1645679057638-e435c5347798?w=900&q=80&auto=format&fit=crop" alt="傳統手作">
+        </div>
+        <figcaption>傳統手作</figcaption>
+      </figure>
+    </div>
+
+    <div class="center-text">
+      <div class="standard-num">Standard 02</div>
+      <h2 class="standard-title">農產加工品標準</h2>
+      <p class="standard-intro">加工品是食材的另一種面貌。我們希望它保留的是食物本來的好，而不是用添加物堆砌出來的味道。</p>
+      <ul>
+        <li>不含人工調味劑、人工調味香精、防腐劑</li>
+        <li>食品添加物完全符合食品法規</li>
+        <li>符合一般食品衛生標準</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Standard 03 水產 v2：split-block reverse + timeline ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="num-lead">03</div>
+  </div>
+
+  <div class="standard-split">
+    <div class="split-text">
+      <div class="standard-num">Standard 03</div>
+      <h2 class="standard-title">水產品標準</h2>
+      <p class="standard-intro">海洋給我們的禮物，我們有責任好好對待。從養殖池到餐桌，每個環節我們都想做到問心無愧。</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-tag">類別 一</span>
+          <h4>養殖水產</h4>
+          <ul>
+            <li>不使用非法水產育成飼料</li>
+            <li>不施用水產動物用藥為優先；如必要使用，須符合水產動物用藥規範並附殘留檢驗</li>
+            <li>低溫處理、急速冷凍保鮮，不添加任何化學保質藥劑（防腐劑、殺菌劑、漂白劑）</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-tag">類別 二</span>
+          <h4>捕撈水產</h4>
+          <ul>
+            <li>以台灣海域捕撈之水產品為優先</li>
+            <li>符合合法漁業規範（非 IUU 非法漁業）</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-tag">類別 三</span>
+          <h4>水產加工</h4>
+          <ul>
+            <li>水產主原料均符合上述養殖或捕撈標準</li>
+            <li>不添加化學保質藥劑為優先；如因食品安全因素必要使用，需完全符合食品添加物使用規範</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <figure class="split-image">
+      <div class="img-wrap">
+        <img src="https://images.unsplash.com/photo-1638189685037-594c346a8366?w=900&q=80&auto=format&fit=crop" alt="新鮮水產">
+      </div>
+      <figcaption>從養殖池到餐桌，每個環節我們都想做到問心無愧。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══ 透明公告 v2：2x2 網格 + 大編號 ═══ -->
+<section class="section bg-pale">
+  <div class="container-wide">
+    <div class="sec-label">Transparency</div>
+    <h2 class="sec-title">透明公告與消費保障</h2>
+    <p class="sec-text">無毒農堅信「安全，不容妥協」。所有產品的資訊，均透過以下方式公開揭露：</p>
+
+    <div class="pillar-grid-v2">
+      <div class="pillar-v2">
+        <div class="num">01</div>
+        <div class="body">
+          <h4>安心檢驗日報</h4>
+          <p>每日公告當日篩檢結果，消費者可即時查閱。全台唯一實施農產品天天檢驗的電商平台。</p>
+        </div>
+      </div>
+      <div class="pillar-v2">
+        <div class="num">02</div>
+        <div class="body">
+          <h4>PGS 參與式驗證</h4>
+          <p>執行參與式驗證，強化消費者與農友之間的連結，與消費者共同分擔從產地到餐桌的把關責任。</p>
+        </div>
+      </div>
+      <div class="pillar-v2">
+        <div class="num">03</div>
+        <div class="body">
+          <h4>食品安全險投保</h4>
+          <p>無毒農投保食品安全險，安全至上，您消費安心，我們更用心，雙重把關。</p>
+        </div>
+      </div>
+      <div class="pillar-v2">
+        <div class="num">04</div>
+        <div class="body">
+          <h4>產地直送可溯源</h4>
+          <p>大多商品採產地直銷，減少中間商剝削，保障小農合理收入，產物皆可溯源。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="#" class="btn btn-primary">查看安心檢驗日報</a>
+      <a href="#" class="btn btn-text">了解 PGS 參與式驗證</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="footer">
+  <div class="ornament"></div>
+  <p class="note">本標準資訊以官網公告為準。無毒農保留依食安法規、科學研究及環境條件調整標準之權利，所有調整均會提前公告，並於產品頁面如實說明。</p>
+  <p class="meta">UPDATED 2026 / 05 / 07</p>
+</footer>
+
+</body>
+</html>
