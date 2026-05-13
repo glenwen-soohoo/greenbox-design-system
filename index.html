@@ -137,10 +137,45 @@
   footer a { color: #595757; }
   footer a:hover { color: #4ba83b; }
 
+  .tools-section {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid #e0e4e6;
+    text-align: left;
+  }
+  .tools-section h2 {
+    font-size: 14px;
+    color: #999;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .tools-section .btn-tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    color: #595757;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .tools-section .btn-tool:hover {
+    border-color: #4ba83b;
+    border-style: solid;
+    color: #4ba83b;
+  }
+  .tools-section .btn-tool .ico { font-size: 16px; }
+
   @media (max-width: 768px) {
     main { padding: 40px 20px; }
     .groups { grid-template-columns: 1fr; gap: 32px; }
     .lead { margin-bottom: 40px; }
+    .tools-section { margin-top: 40px; padding-top: 24px; }
   }
 </style>
 </head>
@@ -193,6 +228,15 @@
           </a>
         </div>
       </div>
+    </div>
+
+    <div class="tools-section">
+      <h2>Tools</h2>
+      <a class="btn-tool" href="tools/font-weight.html">
+        <span class="ico">🔤</span>
+        <span>字體粗細測試（設計自行調）</span>
+        <span class="arrow">→</span>
+      </a>
     </div>
   </div>
 </main>

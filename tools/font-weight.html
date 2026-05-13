@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>字體粗細測試 ｜ GreenBox Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-main: #4ba83b;
+    --green-dark: #008000;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595757;
+    --text-muted: #999;
+    --bg-white: #ffffff;
+    --bg-gray: #ecf0f1;
+    --bg-success: #f0f9ec;
+    --border: #e0e4e6;
+    --radius: 4px;
+
+    /* preview vars，JS 改這些 */
+    --pv-font: 'Noto Sans TC', sans-serif;
+    --pv-h1-w: 700; --pv-h2-w: 600; --pv-h3-w: 600; --pv-h4-w: 500;
+    --pv-body-w: 400; --pv-small-w: 400; --pv-note-w: 400;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-primary);
+    background: #fafbfb;
+    line-height: 1.6;
+    font-size: 16px;
+    padding-top: 44px;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── Switcher bar ─── */
+  .ds-switcher {
+    position: fixed; top: 0; left: 0; right: 0; height: 44px;
+    background: #1a1a1a; color: #fff; z-index: 100;
+    display: flex; align-items: center;
+    padding: 0 24px;
+    font-size: 13px;
+    border-bottom: 1px solid #333;
+  }
+  .ds-sw-inner {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    width: 100%; max-width: 1200px; margin: 0 auto;
+  }
+  .ds-sw-label {
+    color: #999; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; white-space: nowrap; margin-right: 8px;
+  }
+  .ds-sw-link {
+    color: #ccc; text-decoration: none;
+    padding: 5px 12px; border-radius: 4px;
+    font-size: 13px; transition: all 0.15s; white-space: nowrap;
+  }
+  .ds-sw-link:hover { background: #333; color: #fff; }
+  .ds-sw-link.active {
+    background: var(--green-main); color: #fff; font-weight: 500;
+  }
+  .ds-sw-divider { width: 1px; height: 14px; background: #444; }
+  .ds-sw-home { margin-left: auto; color: #999; font-size: 12px; }
+
+  /* ─── Hero ─── */
+  .hero {
+    padding: 56px 32px 32px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero .container { max-width: 1200px; margin: 0 auto; }
+  .hero .label {
+    font-size: 12px;
+    color: var(--green-main);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    max-width: 720px;
+  }
+
+  /* ─── Controls bar ─── */
+  .config-row {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+  }
+  .config-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .group-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+  .pill-group { display: flex; gap: 8px; }
+  .pill {
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: var(--radius);
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .pill:hover { border-color: var(--green-main); color: var(--green-main); }
+  .pill.active {
+    background: var(--green-main);
+    color: #fff;
+    border-color: var(--green-main);
+    font-weight: 500;
+  }
+  .pill.ghost { border-style: dashed; }
+
+  /* ─── Tool grid ─── */
+  .tool {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .controls {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: sticky;
+    top: 60px;
+  }
+  .controls h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .controls .ctrl-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .ctrl-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 50px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--bg-gray);
+  }
+  .ctrl-row:last-of-type { border-bottom: 0; }
+  .ctrl-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+  .ctrl-label small {
+    display: block;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .ctrl-row select {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px 8px;
+    font-size: 13px;
+    background: #fff;
+    color: var(--text-primary);
+    font-family: inherit;
+    width: 100%;
+    cursor: pointer;
+  }
+  .ctrl-row select:focus {
+    outline: none;
+    border-color: var(--green-main);
+  }
+  .ctrl-row .weight-num {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .export-area {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bg-gray);
+  }
+  .btn-export {
+    width: 100%;
+    background: var(--green-main);
+    color: #fff;
+    border: 1px solid var(--green-main);
+    padding: 11px 16px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .btn-export:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .btn-export.copied {
+    background: #fff;
+    color: var(--green-main);
+  }
+
+  /* ─── Preview ─── */
+  .preview {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 48px;
+    font-family: var(--pv-font);
+  }
+  .preview .pv-section {
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--bg-gray);
+  }
+  .preview .pv-section:last-child { border-bottom: 0; }
+  .preview .pv-tag {
+    display: inline-block;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    color: var(--green-main);
+    background: var(--bg-success);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .preview h1 {
+    font-size: 36px;
+    line-height: 1.3;
+    font-weight: var(--pv-h1-w);
+    color: var(--green-dark);
+  }
+  .preview h2 {
+    font-size: 28px;
+    line-height: 1.4;
+    font-weight: var(--pv-h2-w);
+    color: var(--green-dark);
+  }
+  .preview h3 {
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: var(--pv-h3-w);
+    color: var(--green-dark);
+  }
+  .preview h4 {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: var(--pv-h4-w);
+    color: var(--green-dark);
+  }
+  .preview .pv-body {
+    font-size: 16px;
+    line-height: 1.85;
+    font-weight: var(--pv-body-w);
+    color: var(--text-primary);
+  }
+  .preview .pv-body strong {
+    color: var(--green-dark);
+    font-weight: calc(var(--pv-body-w) + 200);
+  }
+  .preview .pv-small {
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: var(--pv-small-w);
+    color: var(--text-secondary);
+  }
+  .preview .pv-note {
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: var(--pv-note-w);
+    color: var(--text-muted);
+  }
+
+  /* ─── CSS modal ─── */
+  .css-output {
+    margin-top: 24px;
+    background: #1a1a1a;
+    border-radius: var(--radius);
+    padding: 20px;
+    overflow-x: auto;
+  }
+  .css-output pre {
+    color: #c8e6c9;
+    font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre;
+    margin: 0;
+  }
+  .css-output .var-name { color: #80cbc4; }
+  .css-output .var-val { color: #ffcc80; }
+  .css-output .comment { color: #757575; }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 900px) {
+    .tool {
+      grid-template-columns: 1fr;
+      padding: 16px;
+      gap: 16px;
+    }
+    .controls { position: static; }
+    .preview { padding: 24px; }
+  }
+  @media (max-width: 768px) {
+    .ds-switcher { height: auto; padding: 8px 12px; position: relative; }
+    .ds-sw-label { display: none; }
+    .ds-sw-link { font-size: 12px; padding: 4px 8px; }
+    body { padding-top: 0; }
+    .hero { padding: 32px 20px 20px; }
+    .hero h1 { font-size: 24px; }
+    .config-row { padding: 12px 20px; }
+    .config-inner { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ Switcher bar ═══ -->
+<div class="ds-switcher">
+  <div class="ds-sw-inner">
+    <span class="ds-sw-label">DS Showcase</span>
+    <a class="ds-sw-link" href="../plan-a/preview.html">A 方案規範</a>
+    <a class="ds-sw-link" href="../plan-a/sample1.html">A 範例 1</a>
+    <a class="ds-sw-link" href="../plan-a/sample2.html">A 範例 2</a>
+    <span class="ds-sw-divider"></span>
+    <a class="ds-sw-link" href="../plan-c/preview.html">C 方案規範</a>
+    <a class="ds-sw-link" href="../plan-c/sample1.html">C 範例 1</a>
+    <a class="ds-sw-link" href="../plan-c/sample2.html">C 範例 2</a>
+    <a class="ds-sw-link ds-sw-home" href="../index.html">← 索引</a>
+  </div>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<header class="hero">
+  <div class="container">
+    <span class="label">Tool · 字體粗細測試</span>
+    <h1>挑出每個層級最舒服的字重</h1>
+    <p>選字型、選字重，右邊即時看實際內容套用後的長相。挑好按「複製 CSS」匯出給工程套進規範裡。</p>
+  </div>
+</header>
+
+<!-- ═══ Global config (font + presets) ═══ -->
+<div class="config-row">
+  <div class="config-inner">
+    <span class="group-label">字型</span>
+    <div class="pill-group" id="font-tabs">
+      <button class="pill active" data-font="sans">Noto Sans TC（A）</button>
+      <button class="pill" data-font="serif">Noto Serif TC（C）</button>
+    </div>
+
+    <span class="group-label" style="margin-left: 16px;">預設</span>
+    <div class="pill-group" id="preset-tabs">
+      <button class="pill ghost" data-preset="plan-a">套 Plan A 預設</button>
+      <button class="pill ghost" data-preset="plan-c">套 Plan C 預設</button>
+      <button class="pill ghost" data-preset="reset">重置</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Tool ═══ -->
+<main class="tool">
+
+  <!-- Controls -->
+  <aside class="controls">
+    <h3>各層級字重</h3>
+    <p class="ctrl-hint">下拉切換、預覽即時更新</p>
+
+    <div class="ctrl-row">
+      <div class="ctrl-label">h1 <small>36px</small></div>
+      <select id="ctrl-h1" data-var="--pv-h1-w"></select>
+      <span class="weight-num" id="num-h1"></span>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-label">h2 <small>28px</small></div>
+      <select id="ctrl-h2" data-var="--pv-h2-w"></select>
+      <span class="weight-num" id="num-h2"></span>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-label">h3 <small>22px</small></div>
+      <select id="ctrl-h3" data-var="--pv-h3-w"></select>
+      <span class="weight-num" id="num-h3"></span>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-label">h4 <small>18px</small></div>
+      <select id="ctrl-h4" data-var="--pv-h4-w"></select>
+      <span class="weight-num" id="num-h4"></span>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-label">body <small>16px</small></div>
+      <select id="ctrl-body" data-var="--pv-body-w"></select>
+      <span class="weight-num" id="num-body"></span>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-label">small <small>14px</small></div>
+      <select id="ctrl-small" data-var="--pv-small-w"></select>
+      <span class="weight-num" id="num-small"></span>
+    </div>
+    <div class="ctrl-row">
+      <div class="ctrl-label">note <small>13px</small></div>
+      <select id="ctrl-note" data-var="--pv-note-w"></select>
+      <span class="weight-num" id="num-note"></span>
+    </div>
+
+    <div class="export-area">
+      <button class="btn-export" id="copy-btn">📋 複製 CSS 變數</button>
+    </div>
+
+    <div class="css-output" id="css-output">
+      <pre id="css-text"></pre>
+    </div>
+  </aside>
+
+  <!-- Preview -->
+  <section class="preview" id="preview">
+    <div class="pv-section">
+      <span class="pv-tag">h1 · 36px</span>
+      <h1>每一口食物，都是一個選擇。</h1>
+    </div>
+    <div class="pv-section">
+      <span class="pv-tag">h2 · 28px</span>
+      <h2>科學驗證，不只口號。</h2>
+    </div>
+    <div class="pv-section">
+      <span class="pv-tag">h3 · 22px</span>
+      <h3>蔬果農產品標準</h3>
+    </div>
+    <div class="pv-section">
+      <span class="pv-tag">h4 · 18px</span>
+      <h4>第一級 有機認證</h4>
+    </div>
+    <div class="pv-section">
+      <span class="pv-tag">body · 16px</span>
+      <p class="pv-body">台灣農藥用量每公頃 <strong>17 公斤</strong>，高於日本的 11 公斤。走訪各地產區的過程中，我們看見土地的負擔、農友的辛苦，也看見消費者對食安的疑慮與不安——那些無法言說的擔心，是我們創立無毒農最深的動力。</p>
+    </div>
+    <div class="pv-section">
+      <span class="pv-tag">small · 14px</span>
+      <p class="pv-small">具備有機標章，符合政府規範之有機驗證農產品。這是農友對土地最深的承諾，我們為他們的堅持驕傲。</p>
+    </div>
+    <div class="pv-section">
+      <span class="pv-tag">note · 13px</span>
+      <p class="pv-note">本標準資訊以官網公告為準。無毒農保留依食安法規、科學研究及環境條件調整標準之權利。</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // 可選的字重清單（依字型不同）
+  const WEIGHTS = {
+    sans:  [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    serif: [200, 300, 400, 500, 600, 700, 900],
+  };
+  const WEIGHT_LABEL = {
+    100: '100 Thin',      200: '200 ExtraLight', 300: '300 Light',
+    400: '400 Regular',   500: '500 Medium',     600: '600 SemiBold',
+    700: '700 Bold',      800: '800 ExtraBold',  900: '900 Black',
+  };
+
+  // 預設組合
+  const PRESETS = {
+    'plan-a': { h1: 700, h2: 600, h3: 600, h4: 500, body: 400, small: 400, note: 400 },
+    'plan-c': { h1: 500, h2: 500, h3: 500, h4: 500, body: 400, small: 400, note: 400 },
+    'reset':  { h1: 700, h2: 600, h3: 600, h4: 500, body: 400, small: 400, note: 400 },
+  };
+
+  const LEVELS = ['h1','h2','h3','h4','body','small','note'];
+  let currentFont = 'sans';
+
+  // 填 select 選項
+  function populateSelects(fontKey) {
+    const weights = WEIGHTS[fontKey];
+    LEVELS.forEach(l => {
+      const sel = document.getElementById('ctrl-' + l);
+      const cur = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--pv-' + l + '-w').trim()) || 400;
+      sel.innerHTML = '';
+      weights.forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w;
+        opt.textContent = WEIGHT_LABEL[w];
+        sel.appendChild(opt);
+      });
+      // 如果目前的字重在新字型中不存在，找最接近的
+      let nearest = weights[0];
+      let minDiff = Math.abs(weights[0] - cur);
+      weights.forEach(w => {
+        if (Math.abs(w - cur) < minDiff) {
+          nearest = w; minDiff = Math.abs(w - cur);
+        }
+      });
+      sel.value = nearest;
+      applyWeight(l, nearest);
+    });
+  }
+
+  function applyWeight(level, weight) {
+    document.documentElement.style.setProperty('--pv-' + level + '-w', weight);
+    document.getElementById('num-' + level).textContent = weight;
+    updateCssOutput();
+  }
+
+  function applyPreset(name) {
+    const p = PRESETS[name];
+    if (!p) return;
+    LEVELS.forEach(l => {
+      const sel = document.getElementById('ctrl-' + l);
+      const weights = WEIGHTS[currentFont];
+      // 找預設值在當前字型中是否存在；不存在用最接近的
+      let target = p[l];
+      if (!weights.includes(target)) {
+        let minDiff = Infinity;
+        weights.forEach(w => {
+          if (Math.abs(w - target) < minDiff) {
+            target = w; minDiff = Math.abs(w - p[l]);
+          }
+        });
+      }
+      sel.value = target;
+      applyWeight(l, target);
+    });
+  }
+
+  function updateCssOutput() {
+    const weights = {};
+    LEVELS.forEach(l => {
+      weights[l] = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--pv-' + l + '-w').trim());
+    });
+    const family = currentFont === 'serif'
+      ? "'Noto Serif TC', serif"
+      : "'Noto Sans TC', sans-serif";
+
+    const css = `:root {
+  --font-family: ${family};
+  --h1-weight:    ${weights.h1};
+  --h2-weight:    ${weights.h2};
+  --h3-weight:    ${weights.h3};
+  --h4-weight:    ${weights.h4};
+  --body-weight:  ${weights.body};
+  --small-weight: ${weights.small};
+  --note-weight:  ${weights.note};
+}
+
+body, p     { font-family: var(--font-family); font-weight: var(--body-weight); }
+h1          { font-weight: var(--h1-weight); }
+h2          { font-weight: var(--h2-weight); }
+h3          { font-weight: var(--h3-weight); }
+h4          { font-weight: var(--h4-weight); }
+.text-small { font-weight: var(--small-weight); }
+.text-note  { font-weight: var(--note-weight); }`;
+
+    document.getElementById('css-text').textContent = css;
+    window._currentCss = css;
+  }
+
+  // 綁定 select change
+  LEVELS.forEach(l => {
+    const sel = document.getElementById('ctrl-' + l);
+    sel.addEventListener('change', () => applyWeight(l, sel.value));
+  });
+
+  // 字型切換
+  document.querySelectorAll('#font-tabs .pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#font-tabs .pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFont = btn.dataset.font;
+      const family = currentFont === 'serif'
+        ? "'Noto Serif TC', serif"
+        : "'Noto Sans TC', sans-serif";
+      document.documentElement.style.setProperty('--pv-font', family);
+      populateSelects(currentFont);
+    });
+  });
+
+  // 預設組合按鈕
+  document.querySelectorAll('#preset-tabs .pill').forEach(btn => {
+    btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+  });
+
+  // 複製 CSS
+  document.getElementById('copy-btn').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window._currentCss);
+      const btn = document.getElementById('copy-btn');
+      btn.classList.add('copied');
+      btn.textContent = '✓ 已複製到剪貼簿';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.textContent = '📋 複製 CSS 變數';
+      }, 2000);
+    } catch (err) {
+      alert('複製失敗：' + err.message);
+    }
+  });
+
+  // 初始化
+  populateSelects(currentFont);
+</script>
+
+</body>
+</html>
