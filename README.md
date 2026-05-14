@@ -1,6 +1,7 @@
 # GreenBox Design System
 
 > 建立日期：2026-05-07
+> 最後更新：2026-05-14
 > 類型：參考資料
 > 適用對象：無毒農內部 + 老闆決策
 
@@ -14,19 +15,16 @@
 
 | 路徑 | 內容 |
 |---|---|
-| `index.html` | 主展示頁，列出兩方案 + 6 個展示頁面 + 方案對照表 |
+| `index.html` | 主展示頁，列出兩方案 + 6 個展示頁面 |
 | `plan-a/preview.html` | 方案 A 規範總覽（色票/字級/版型...）|
-| `plan-a/sample1.html` | 方案 A 範例 1：關於無毒農（純設計）|
-| `plan-a/sample1-greenbox.html` | 方案 A 範例 1：套上 greenbox.tw 官網殼 |
-| `plan-a/sample2.html` | 方案 A 範例 2：關於無毒農 變化版（純設計）|
-| `plan-a/sample2-greenbox.html` | 方案 A 範例 2：套上官網殼 |
-| `plan-c/preview.html` | 方案 C 規範總覽 |
-| `plan-c/sample1.html` | 方案 C 範例 1：關於無毒農 |
-| `plan-c/sample1-greenbox.html` | 方案 C 範例 1：套上官網殼 |
-| `plan-c/sample2.html` | 方案 C 範例 2 |
-| `plan-c/sample2-greenbox.html` | 方案 C 範例 2：套上官網殼 |
+| `plan-a/sample1.html` | 方案 A 範例 1：關於無毒農（套上官網殼） |
+| `plan-a/sample2.html` | 方案 A 範例 2：關於無毒農 變化版（套上官網殼） |
+| `plan-d/preview.html` | 方案 D 規範總覽 |
+| `plan-d/sample1.html` | 方案 D 範例 1：關於無毒農（套上官網殼） |
+| `plan-d/sample2.html` | 方案 D 範例 2：關於無毒農（套上官網殼） |
+| `tools/font-weight.html` | 字體測試工具（設計可自行調字級／字重）|
 | `docs/plan-a-spec.md` | Plan A 完整規範文件 |
-| `docs/plan-c-spec.md` | Plan C 完整規範文件 |
+| `docs/plan-d-spec.md` | Plan D 完整規範文件 |
 
 ---
 
@@ -44,17 +42,19 @@
 
 最低風險、最快上線。AI 改版時可以從這份規則開始疊加。
 
-### 方案 C · 文青版
+### 方案 D · 精煉版
 
-主色完全沿用無毒農品牌色，但字型、版型、間距、攝影風格大改，對齊主流 AI 在「無提示」時自然會產生的設計風格。
+主色完全沿用無毒農品牌色，字型統一 Noto Sans TC、字重整體偏細，視覺克制、不誤導點擊。
 
-- 主色 `#4ba83b`（不變）+ 兩個延伸色（深森林綠 / 極淺綠）
-- 字型 Noto Serif TC（標題）+ Noto Sans TC（內文）
+- 主色 `#4ba83b`（不變）+ 極淺綠延伸色
+- 字型 Noto Sans TC（中文唯一字型）
+- 字級 39 / 30 / 24 / 19 / 16 / 14 / 13
+- 字重 h1=500 / h2-h4=400 / body=300
 - 圓角 0px
 - Section padding 112~128px
-- 容器 max-width 880px
+- 容器 max-width 880px / 同區塊內對齊一致
 
-視覺感最強、品牌升級感最高。但需要組織配套大改（攝影 brief、行銷文案、客服訓練）。
+整體比 A 更克制：Hero 不放 CTA、標題不做按鈕樣、無連結卡片不加 hover、避免空洞金句與 Statement Section。
 
 ---
 
@@ -89,7 +89,9 @@ D:\Obsidian\projects\Gb-Design System\
 ├── 製作規劃\          <- 三方案策略、簡報結構、執行清單
 ├── Design System\
 │   ├── 方案A\         <- 規範文件 + 預覽 + 範例 HTML
-│   └── 方案C\
+│   ├── 方案D\         <- 規範文件 + 預覽 + 範例 HTML
+│   ├── 留存\          <- 已淘汰的方案 C 等
+│   └── 整合到 fruit_web 的踩雷筆記.md
 └── 簡報\              <- 對老闆的決策簡報
 ```
 
