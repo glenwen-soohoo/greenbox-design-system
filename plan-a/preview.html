@@ -10,18 +10,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans TC', sans-serif; color: #1a1a1a; background: #f5f5f5; line-height: 1.6; padding: 32px; }
-  .page { max-width: 1100px; margin: 0 auto; }
-  h1.page-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  body { font-family: 'Noto Sans TC', sans-serif; color: #1a1a1a; background: #f5f5f5; line-height: 1.85; font-weight: 300; padding: 32px; }
+  .page { max-width: 880px; margin: 0 auto; }
+  h1.page-title { font-size: 39px; font-weight: 500; margin-bottom: 8px; }
   .page-sub { font-size: 14px; color: #999; margin-bottom: 32px; }
 
   section.card { background: #fff; border-radius: 4px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-  section.card h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #ecf0f1; }
-  section.card h3 { font-size: 16px; font-weight: 600; margin-top: 20px; margin-bottom: 12px; color: #595757; }
+  section.card h2 { font-size: 30px; font-weight: 400; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #ecf0f1; }
+  section.card h3 { font-size: 24px; font-weight: 400; margin-top: 20px; margin-bottom: 12px; color: #595757; }
 
   /* 收合卡片 */
   details.card-fold { background: #fff; border-radius: 4px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); overflow: hidden; }
-  details.card-fold > summary { padding: 24px; cursor: pointer; list-style: none; font-size: 20px; font-weight: 600; user-select: none; position: relative; }
+  details.card-fold > summary { padding: 24px; cursor: pointer; list-style: none; font-size: 30px; font-weight: 400; user-select: none; position: relative; }
   details.card-fold > summary::-webkit-details-marker { display: none; }
   details.card-fold > summary::after { content: '▸'; position: absolute; right: 24px; top: 50%; transform: translateY(-50%); transition: transform 0.2s; font-size: 14px; color: #999; }
   details.card-fold[open] > summary::after { transform: translateY(-50%) rotate(90deg); }
@@ -30,7 +30,7 @@
 
   /* 子品牌內嵌收合 */
   details.subbrand-fold { border: 1px solid #ecf0f1; border-radius: 4px; margin-bottom: 12px; }
-  details.subbrand-fold > summary { padding: 12px 40px 12px 16px; cursor: pointer; font-weight: 600; font-size: 16px; color: #595757; list-style: none; position: relative; user-select: none; }
+  details.subbrand-fold > summary { padding: 12px 40px 12px 16px; cursor: pointer; font-weight: 400; font-size: 19px; color: #595757; list-style: none; position: relative; user-select: none; }
   details.subbrand-fold > summary::-webkit-details-marker { display: none; }
   details.subbrand-fold > summary::after { content: '▸'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); transition: transform 0.2s; font-size: 12px; color: #999; }
   details.subbrand-fold[open] > summary::after { transform: translateY(-50%) rotate(90deg); }
@@ -50,13 +50,13 @@
   .type-row:last-child { border-bottom: none; }
   .type-label { flex: 0 0 200px; font-family: 'Courier New', monospace; font-size: 12px; color: #999; }
   .type-sample { flex: 1; }
-  .h1-sample { font-size: 36px; font-weight: 700; line-height: 1.3; }
-  .h2-sample { font-size: 28px; font-weight: 600; line-height: 1.4; }
-  .h3-sample { font-size: 22px; font-weight: 600; line-height: 1.4; }
-  .h4-sample { font-size: 18px; font-weight: 500; line-height: 1.5; }
-  .body-sample { font-size: 16px; }
-  .small-sample { font-size: 14px; color: #595757; }
-  .note-sample { font-size: 13px; color: #999; }
+  .h1-sample { font-size: 39px; font-weight: 500; line-height: 1.3; }
+  .h2-sample { font-size: 30px; font-weight: 400; line-height: 1.4; }
+  .h3-sample { font-size: 24px; font-weight: 400; line-height: 1.4; }
+  .h4-sample { font-size: 19px; font-weight: 400; line-height: 1.5; }
+  .body-sample { font-size: 16px; font-weight: 300; }
+  .small-sample { font-size: 14px; font-weight: 300; color: #595757; }
+  .note-sample { font-size: 13px; font-weight: 300; color: #999; }
 
   /* 按鈕 */
   .btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
@@ -65,8 +65,8 @@
   .btn { display: inline-block; padding: 12px 28px; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; font-family: inherit; }
   .btn-primary { background: #4ba83b; color: #fff; }
   .btn-primary:hover { background: #fff; color: #4ba83b; box-shadow: inset 0 0 0 1px #4ba83b; }
-  .btn-secondary { background: #fff; color: #4ba83b; border: 1px solid #4ba83b; }
-  .btn-secondary:hover { background: #4ba83b; color: #fff; }
+  .btn-secondary { background: transparent; color: #008000; border: none; border-bottom: 1px solid #008000; border-radius: 0; padding: 4px 0; }
+  .btn-secondary:hover { background: transparent; color: #4ba83b; border-bottom-color: #4ba83b; box-shadow: none; }
   .btn-jubaby { background: #F58787; color: #fff; }
   .btn-jubaby:hover { background: #fff; color: #F58787; box-shadow: inset 0 0 0 1px #F58787; }
   .btn-baby { background: #FFA3A3; color: #fff; }
@@ -94,7 +94,7 @@
   /* 版型區塊 */
   .layout-block { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #ecf0f1; }
   .layout-block:last-child { border-bottom: none; padding-bottom: 0; }
-  .layout-block h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; color: #1a1a1a; }
+  .layout-block h3 { font-size: 19px; font-weight: 400; margin: 0 0 4px; color: #1a1a1a; }
   .layout-use { font-size: 13px; color: #999; margin-bottom: 12px; }
 
   /* 版型 mock */
@@ -133,12 +133,11 @@
   .form-field.check-row label { display: inline; margin: 0; font-weight: 400; cursor: pointer; }
 
   /* 提示框 */
-  .alert { padding: 12px 16px; border-radius: 4px; margin-bottom: 12px; font-size: 14px; display: flex; align-items: flex-start; gap: 12px; }
-  .alert i { font-size: 20px; line-height: 1.2; }
-  .alert-error { background: #fff5f5; border: 1px solid #dc4e43; color: #dc4e43; }
-  .alert-warn { background: #fff7f0; border: 1px solid #eb6100; color: #eb6100; }
-  .alert-success { background: #f0f9ec; border: 1px solid #4ba83b; color: #4ba83b; }
-  .alert-info { background: #ecf0f1; border: 1px solid #999; color: #595757; }
+  .alert { padding: 8px 0; margin-bottom: 12px; font-size: 14px; display: block; background: none; border: none; }
+  .alert-error { color: #dc4e43; border-bottom: 1px solid #dc4e43; }
+  .alert-warn { color: #eb6100; border-bottom: 1px solid #eb6100; }
+  .alert-success { color: #4ba83b; border-bottom: 1px solid #4ba83b; }
+  .alert-info { color: #999; border-bottom: 1px solid #999; }
 
   /* Loading / 空狀態 */
   .state-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
@@ -353,34 +352,34 @@
     <details class="subbrand-fold">
       <summary>綠拿鐵（GreenSmoothie）</summary>
       <div class="fold-content">
-    <p style="font-size:14px; color:#595757; margin-bottom:12px;">調性：偏黃淡綠主視覺 + 橄欖綠強調 + 黃色重點 + 珊瑚紅 CTA</p>
+    <p style="font-size:14px; color:#595757; margin-bottom:12px;">調性：偏黃淡綠主視覺 + 橄欖綠／中草綠強調 + 暖橘點綴 + 珊瑚紅 CTA</p>
 
-    <h4 style="font-size:13px; color:#999; margin-top:16px; margin-bottom:8px; font-weight:500;">綠系（3 種）</h4>
+    <h4 style="font-size:13px; color:#999; margin-top:16px; margin-bottom:8px; font-weight:500;">綠系（4 種）</h4>
     <div class="swatch-row">
       <div class="swatch"><div class="color-block" style="background:#C8D194;"></div><div class="meta"><div class="name">主色 偏黃淡綠 ⚠️</div><div class="hex">#C8D194</div></div></div>
-      <div class="swatch"><div class="color-block" style="background:#7B914E;"></div><div class="meta"><div class="name">橄欖綠</div><div class="hex">#7B914E</div></div></div>
-      <div class="swatch"><div class="color-block" style="background:#596E2F;"></div><div class="meta"><div class="name">深橄欖綠</div><div class="hex">#596E2F</div></div></div>
+      <div class="swatch"><div class="color-block" style="background:#bacb62;"></div><div class="meta"><div class="name">橄欖綠</div><div class="hex">#bacb62</div></div></div>
+      <div class="swatch"><div class="color-block" style="background:#91ba57;"></div><div class="meta"><div class="name">中草綠</div><div class="hex">#91ba57</div></div></div>
+      <div class="swatch"><div class="color-block" style="background:#6da333;"></div><div class="meta"><div class="name">深橄欖綠</div><div class="hex">#6da333</div></div></div>
     </div>
 
-    <h4 style="font-size:13px; color:#999; margin-top:16px; margin-bottom:8px; font-weight:500;">黃、珊瑚紅、背景</h4>
+    <h4 style="font-size:13px; color:#999; margin-top:16px; margin-bottom:8px; font-weight:500;">暖橘、珊瑚紅、背景</h4>
     <div class="swatch-row">
-      <div class="swatch"><div class="color-block" style="background:#F4E8B0;"></div><div class="meta"><div class="name">淡黃 ⚠️</div><div class="hex">#F4E8B0</div></div></div>
-      <div class="swatch"><div class="color-block" style="background:#CAA940;"></div><div class="meta"><div class="name">黃</div><div class="hex">#CAA940</div></div></div>
+      <div class="swatch"><div class="color-block" style="background:#f7ad39;"></div><div class="meta"><div class="name">暖橘 點綴</div><div class="hex">#f7ad39</div></div></div>
       <div class="swatch"><div class="color-block" style="background:#FF755A;"></div><div class="meta"><div class="name">珊瑚紅 (CTA)</div><div class="hex">#FF755A</div></div></div>
       <div class="swatch"><div class="color-block" style="background:#FFFFFF; border:1px solid #ecf0f1;"></div><div class="meta"><div class="name">白底</div><div class="hex">#FFFFFF</div></div></div>
     </div>
 
     <div class="info-box" style="margin-top:12px;">
-      綠系 3 種 + 黃 / 珊瑚紅 / 白。橄欖綠 <code>#7B914E</code> 為文字（CSS 最高頻），主色偏黃淡綠 ⚠️ 為視覺估值。CTA 用珊瑚紅 <code>#FF755A</code>。黃 <code>#CAA940</code> 跟 Blog 金同色共用。
+      綠系 4 種 + 暖橘 / 珊瑚紅 / 白。橄欖綠 <code>#bacb62</code>、中草綠 <code>#91ba57</code>、深橄欖綠 <code>#6da333</code> 為更鮮明的綠系，主色偏黃淡綠 ⚠️ 為視覺估值。CTA 用珊瑚紅 <code>#FF755A</code>，點綴改用暖橘 <code>#f7ad39</code>（不再共用 Blog 金）。
     </div>
 
     <!-- 樣本組合：綠拿鐵頁面感（單色背景，遵守不可用版型禁用漸層）-->
-    <div style="background:#F4F2DC; padding:32px; border-radius:4px; margin-top:16px;">
-      <p style="color:#596E2F; font-size:13px; letter-spacing:0.1em; font-weight:600;">GREEN SMOOTHIE</p>
-      <h3 style="color:#596E2F; margin:8px 0 16px; border-bottom:none; padding-bottom:0;">綠拿鐵｜喝出好日常</h3>
-      <p style="color:#7B914E; font-size:14px; margin-bottom:20px;">早晨一杯，補足一天蔬果量</p>
+    <div style="background:#EFF5E5; padding:32px; border-radius:4px; margin-top:16px;">
+      <p style="color:#6da333; font-size:13px; letter-spacing:0.1em; font-weight:600;">GREEN SMOOTHIE</p>
+      <h3 style="color:#6da333; margin:8px 0 16px; border-bottom:none; padding-bottom:0;">綠拿鐵｜喝出好日常</h3>
+      <p style="color:#bacb62; font-size:14px; margin-bottom:20px;">早晨一杯，補足一天蔬果量</p>
       <a style="display:inline-block; background:#FF755A; color:#fff; padding:10px 24px; border-radius:4px; font-weight:500;">加入購物車</a>
-      <span style="display:inline-block; background:#CAA940; color:#fff; padding:4px 12px; border-radius:4px; font-size:12px; margin-left:12px;">果蔬比 2.75:1</span>
+      <span style="display:inline-block; background:#f7ad39; color:#fff; padding:4px 12px; border-radius:4px; font-size:12px; margin-left:12px;">果蔬比 2.75:1</span>
     </div>
       </div>
     </details>
@@ -467,13 +466,13 @@
   <!-- 四、字級 -->
   <section class="card">
     <h2>四、字級階梯（Noto Sans TC）</h2>
-    <div class="type-row"><div class="type-label">h1 / 36px / 700</div><div class="type-sample h1-sample">無毒農 用信任連結產地與餐桌</div></div>
-    <div class="type-row"><div class="type-label">h2 / 28px / 600</div><div class="type-sample h2-sample">我們的承諾與檢驗標準</div></div>
-    <div class="type-row"><div class="type-label">h3 / 22px / 600</div><div class="type-sample h3-sample">產地直送、每日篩檢</div></div>
-    <div class="type-row"><div class="type-label">h4 / 18px / 500</div><div class="type-sample h4-sample">質譜篩檢實驗室</div></div>
-    <div class="type-row"><div class="type-label">body / 16px / 400</div><div class="type-sample body-sample">無毒農成立的初衷，是用信任連結產地和餐桌。</div></div>
-    <div class="type-row"><div class="type-label">small / 14px / 400</div><div class="type-sample small-sample">每批作物皆經質譜普篩法檢驗</div></div>
-    <div class="type-row"><div class="type-label">note / 13px / 400</div><div class="type-sample note-sample">＊本標準資訊以官網公告為準</div></div>
+    <div class="type-row"><div class="type-label">h1 / 39px / 500</div><div class="type-sample h1-sample">無毒農 用信任連結產地與餐桌</div></div>
+    <div class="type-row"><div class="type-label">h2 / 30px / 400</div><div class="type-sample h2-sample">我們的承諾與檢驗標準</div></div>
+    <div class="type-row"><div class="type-label">h3 / 24px / 400</div><div class="type-sample h3-sample">產地直送、每日篩檢</div></div>
+    <div class="type-row"><div class="type-label">h4 / 19px / 400</div><div class="type-sample h4-sample">質譜篩檢實驗室</div></div>
+    <div class="type-row"><div class="type-label">body / 16px / 300</div><div class="type-sample body-sample">無毒農成立的初衷，是用信任連結產地和餐桌。</div></div>
+    <div class="type-row"><div class="type-label">small / 14px / 300</div><div class="type-sample small-sample">每批作物皆經質譜普篩法檢驗</div></div>
+    <div class="type-row"><div class="type-label">note / 13px / 300</div><div class="type-sample note-sample">＊本標準資訊以官網公告為準</div></div>
   </section>
 
   <!-- 五、按鈕 -->
@@ -526,15 +525,15 @@
     <table class="rwd-table">
       <thead><tr><th>屬性</th><th>mobile</th><th>tablet</th><th>desktop</th></tr></thead>
       <tbody>
-        <tr><td>容器 max-width</td><td>全寬 - 32px</td><td>全寬 - 64px</td><td>1140px</td></tr>
+        <tr><td>容器 max-width</td><td>全寬 - 32px</td><td>全寬 - 64px</td><td>880px</td></tr>
         <tr><td>內容左右 padding</td><td>16px</td><td>32px</td><td>用 max-width 收</td></tr>
         <tr><td>Section 上下 padding</td><td>32px</td><td>48px</td><td>64px</td></tr>
-        <tr><td>h1 字級</td><td>28px</td><td>32px</td><td>36px</td></tr>
-        <tr><td>h2 字級</td><td>22px</td><td>26px</td><td>28px</td></tr>
-        <tr><td>body 字級</td><td>16px</td><td>16px</td><td>16px</td></tr>
+        <tr><td>h1 字級</td><td>32px</td><td>40px</td><td>48px</td></tr>
+        <tr><td>h2 字級</td><td>26px</td><td>32px</td><td>36px</td></tr>
+        <tr><td>body 字級</td><td>16px</td><td>17px</td><td>18px</td></tr>
         <tr><td>按鈕 padding</td><td>10px 20px</td><td>12px 24px</td><td>12px 28px</td></tr>
         <tr><td>主 nav</td><td>漢堡選單</td><td>漢堡或展開</td><td>橫向展開</td></tr>
-        <tr><td>圖片裁切</td><td>1:1 / 4:3</td><td>4:3 / 16:9</td><td>16:9</td></tr>
+        <tr><td>圖片裁切</td><td>4:5 / 4:3</td><td>4:5 / 4:3</td><td>4:5 / 16:9 / 21:9</td></tr>
       </tbody>
     </table>
     <p style="font-size:13px; color:#999; margin-top:8px;">→ 各版型在此基礎上加自身欄數 / 排列調整，見「九、常用版型」。</p>
@@ -549,11 +548,11 @@
     <table class="rwd-table">
       <thead><tr><th>頁面類型</th><th>容器策略</th><th>說明</th></tr></thead>
       <tbody>
-        <tr><td>商品列表 / 詳情</td><td>max-width 1140px 置中</td><td>標準商業頁</td></tr>
-        <tr><td>Blog 列表 / 文章</td><td>max-width 1140px 置中</td><td>同上</td></tr>
+        <tr><td>商品列表 / 詳情</td><td>max-width 880px 置中</td><td>標準商業頁</td></tr>
+        <tr><td>Blog 列表 / 文章</td><td>max-width 880px 置中</td><td>同上</td></tr>
         <tr><td>訂單 / 結帳 / 聯絡我們</td><td>max-width 524px 置中</td><td>單欄表單</td></tr>
         <tr><td>會員中心 / 後台型功能頁</td><td><strong>不受寬度限制（全寬）</strong></td><td>需要橫向空間放 sidebar + 主內容</td></tr>
-        <tr><td>首頁 / 子品牌 LandingPage</td><td>全寬，內部各區塊各自有容器</td><td>Hero 區塊全寬，內容區塊用 1140px 容器</td></tr>
+        <tr><td>首頁 / 子品牌 LandingPage</td><td>全寬，內部各區塊各自有容器</td><td>Hero 區塊全寬，內容區塊用 880px 容器</td></tr>
       </tbody>
     </table>
 
@@ -671,11 +670,11 @@
       <table class="rwd-table">
         <thead><tr><th>屬性</th><th>mobile</th><th>tablet</th><th>desktop</th></tr></thead>
         <tbody>
-          <tr><td>Hero 高度</td><td>50vh / 49vw</td><td>50vh</td><td>60vh / 21vw</td></tr>
-          <tr><td>Hero 文字位置</td><td>置中</td><td>置中或左對齊</td><td>左對齊</td></tr>
+          <tr><td>Hero 高度</td><td>76vh</td><td>84vh</td><td>84~90vh</td></tr>
+          <tr><td>Hero 文字位置</td><td>置中</td><td>置中</td><td>置中或左下</td></tr>
           <tr><td>區塊堆疊</td><td>單欄堆疊</td><td>單欄或雙欄</td><td>左右交替雙欄</td></tr>
-          <tr><td>區塊間距</td><td>32px</td><td>48px</td><td>64~96px</td></tr>
-          <tr><td>CTA 按鈕</td><td>全寬</td><td>自動寬</td><td>自動寬，可並排多顆</td></tr>
+          <tr><td>區塊間距</td><td>64px</td><td>96px</td><td>128~160px</td></tr>
+          <tr><td>CTA 按鈕</td><td colspan="3">Hero 內不放 CTA；置於內容區塊後（全寬 / 自動寬，可並排多顆）</td></tr>
         </tbody>
       </table>
     </div>
@@ -690,8 +689,6 @@
           <p style="font-size:12px; color:#999; margin-bottom:6px;">desktop（16:9）</p>
           <div style="position:relative; width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,#ecf0f1,#d5dcdc); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#999; font-size:13px;">
             <span>Banner 主視覺</span>
-            <div style="position:absolute; left:12px; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.8); display:flex; align-items:center; justify-content:center; color:#595757;">‹</div>
-            <div style="position:absolute; right:12px; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.8); display:flex; align-items:center; justify-content:center; color:#595757;">›</div>
           </div>
           <!-- 圓點：圖外下方獨立區域 -->
           <div style="display:flex; justify-content:center; gap:6px; padding:12px 0;">
@@ -706,8 +703,6 @@
           <p style="font-size:12px; color:#999; margin-bottom:6px;">mobile（1:1 維持方形）</p>
           <div style="position:relative; width:100%; aspect-ratio:1/1; background:linear-gradient(135deg,#ecf0f1,#d5dcdc); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#999; font-size:12px;">
             <span>Banner</span>
-            <div style="position:absolute; left:6px; top:50%; transform:translateY(-50%); width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.8); display:flex; align-items:center; justify-content:center; color:#595757; font-size:14px;">‹</div>
-            <div style="position:absolute; right:6px; top:50%; transform:translateY(-50%); width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.8); display:flex; align-items:center; justify-content:center; color:#595757; font-size:14px;">›</div>
           </div>
           <div style="display:flex; justify-content:center; gap:5px; padding:10px 0;">
             <div style="width:6px; height:6px; border-radius:50%; background:#4ba83b;"></div>
@@ -722,12 +717,12 @@
         <tbody>
           <tr><td><strong>比例</strong></td><td>1:1 方形（<strong>維持現況</strong>）</td><td>~21:9 → <strong>改 16:9</strong></td></tr>
           <tr><td>容器寬度</td><td>330px（含 padding）</td><td>1040px / 全寬 或 1140px</td></tr>
-          <tr><td>左右箭頭</td><td>顯示</td><td>顯示</td></tr>
+          <tr><td>左右箭頭</td><td>移除（僅保留圓點）</td><td>移除（僅保留圓點）</td></tr>
           <tr><td><strong>圓點位置</strong></td><td colspan="2" style="text-align:center;"><strong>圖片外下方獨立區域</strong>（不疊在圖片上）</td></tr>
           <tr><td>圓點數量</td><td>≤ 8 個</td><td>≤ 8 個</td></tr>
-          <tr><td>自動播放間隔</td><td>3 秒（現況） → 5 秒（規範）</td><td>3 秒 → 5 秒</td></tr>
+          <tr><td>自動播放間隔</td><td>3 秒（現況） → 7 秒（規範）</td><td>3 秒 → 7 秒</td></tr>
           <tr><td>切換動畫時間</td><td>1000ms → 300~500ms</td><td>1000ms → 300~500ms</td></tr>
-          <tr><td>切換方式</td><td>swipe + 箭頭 + 圓點</td><td>swipe + 箭頭 + 圓點</td></tr>
+          <tr><td>切換方式</td><td>swipe + 圓點</td><td>swipe + 圓點</td></tr>
           <tr><td>套件</td><td>slick carousel</td><td>slick carousel</td></tr>
         </tbody>
       </table>
@@ -735,8 +730,9 @@
         <strong>未來改版方向</strong>：
         <ul style="margin:4px 0 0 16px; padding:0; font-size:13px; line-height:1.7;">
           <li><strong>桌機改 16:9</strong>（現況 ~21:9 太扁）；<strong>mobile 維持 1:1 方形</strong></li>
+          <li><strong>移除左右箭頭</strong>，僅保留圖片外下方圓點導航</li>
           <li><strong>圓點放圖片外下方獨立區域</strong>（不疊在圖片上），避免遮蓋圖片內容</li>
-          <li>autoplay 拉長到 5 秒（讓人有時間閱讀文字）</li>
+          <li>autoplay 拉長到 7 秒（讓人有時間閱讀文字）</li>
           <li>切換動畫從 1000ms 縮短到 300~500ms（更俐落）</li>
           <li>圖內文字 / CTA 位置 DS 不規範（避免限制設計）</li>
         </ul>
@@ -766,7 +762,7 @@
           <tr><td>多段交替</td><td>全部圖在上</td><td>全部圖在上</td><td>左圖右文 / 右圖左文交替</td></tr>
         </tbody>
       </table>
-      <div class="info-box" style="margin-top:8px;">圓角 4px；用 <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> 寫圖說（語意 + AEO 友善）。</div>
+      <div class="info-box" style="margin-top:8px;">圓角 4px；圖片直接用 <code>&lt;img&gt;</code> + <code>alt</code> 描述（不另加 figcaption 圖說）。</div>
     </div>
 
     <div class="layout-block">
@@ -806,12 +802,12 @@
       <table class="rwd-table">
         <thead><tr><th>形式</th><th>mobile</th><th>tablet</th><th>desktop</th></tr></thead>
         <tbody>
-          <tr><td>單張大圖</td><td>全寬 16:9</td><td>全寬 16:9</td><td>全寬或 1140px max</td></tr>
+          <tr><td>單張大圖</td><td>全寬 21:9</td><td>全寬 21:9</td><td>全寬 21:9</td></tr>
           <tr><td>雙圖並排</td><td>上下堆疊</td><td>雙欄 1:1</td><td>雙欄 1:1 或 4:3</td></tr>
           <tr><td>三圖網格</td><td>上下堆疊</td><td>雙欄 + 一</td><td>三欄 4:3</td></tr>
           <tr><td>四圖網格</td><td>雙欄 1:1</td><td>雙欄 1:1</td><td>四欄 1:1</td></tr>
-          <tr><td>圖片 gap</td><td>8~12px</td><td>16px</td><td>24~32px</td></tr>
-          <tr><td>圖說（caption）</td><td colspan="3" style="text-align:center;">圖下 12px、note 13px、灰字 #999；用 <code>&lt;figcaption&gt;</code></td></tr>
+          <tr><td>圖片 gap</td><td>12~16px</td><td>24px</td><td>48px</td></tr>
+          <tr><td>圖片 alt</td><td colspan="3" style="text-align:center;">圖片直接用 <code>&lt;img&gt;</code> + <code>alt</code> 描述內容（不另加 figcaption 圖說）</td></tr>
         </tbody>
       </table>
     </div>
@@ -933,10 +929,10 @@
   <!-- 十、提示框 -->
   <section class="card">
     <h2>十二、錯誤訊息與提示</h2>
-    <div class="alert alert-error"><i class="fas fa-exclamation-circle"></i><div><strong>錯誤</strong><br>付款失敗，請確認信用卡資訊</div></div>
-    <div class="alert alert-warn"><i class="fas fa-exclamation-triangle"></i><div><strong>警告</strong><br>商品庫存不足，請盡快結帳</div></div>
-    <div class="alert alert-success"><i class="fas fa-check-circle"></i><div><strong>成功</strong><br>訂單已成立，將寄送確認信至您的 email</div></div>
-    <div class="alert alert-info"><i class="fas fa-info-circle"></i><div><strong>提示</strong><br>本次訂單享免運優惠</div></div>
+    <div class="alert alert-error"><strong>錯誤</strong> 付款失敗，請確認信用卡資訊</div>
+    <div class="alert alert-warn"><strong>警告</strong> 商品庫存不足，請盡快結帳</div>
+    <div class="alert alert-success"><strong>成功</strong> 訂單已成立，將寄送確認信至您的 email</div>
+    <div class="alert alert-info"><strong>提示</strong> 本次訂單享免運優惠</div>
   </section>
 
   <!-- 十一、無障礙 -->
@@ -1089,7 +1085,7 @@
       <li><strong>子品牌色票封存</strong>：粥寶寶、綠拿鐵、等家寶寶、益菓保各自獨立章節</li>
       <li><strong>新色票納入</strong>：<code>#CAA940</code>、<code>#008000</code>、<code>#5cb0df</code>、新版益菓保、綠拿鐵</li>
       <li><strong>表單元素規範化</strong>：input、select、checkbox、錯誤狀態統一</li>
-      <li><strong>Banner 規範化</strong>：桌機改 16:9（mobile 維持 1:1），圓點改放圖外下方，autoplay 拉長到 5 秒</li>
+      <li><strong>Banner 規範化</strong>：桌機改 16:9（mobile 維持 1:1），移除左右箭頭、圓點改放圖外下方，autoplay 拉長到 7 秒</li>
     </ol>
   </section>
 
@@ -1134,9 +1130,9 @@
   <section class="card">
     <h2 style="color:#999;">附錄：樣本組合（看色票字型一起運作）</h2>
     <div style="background:#fff; padding:48px 32px; border:1px solid #ecf0f1; border-radius:4px;">
-      <h1 style="font-size:36px; font-weight:700; color:#008000; margin-bottom:16px;">關於無毒農</h1>
+      <h1 style="font-size:39px; font-weight:500; color:#008000; margin-bottom:16px;">關於無毒農</h1>
       <p style="font-size:16px; color:#595757; line-height:1.7; margin-bottom:24px;">
-        每一口食物，都是一個選擇。選擇相信，或選擇懷疑。<br>
+        每一口食物，都是一個選擇。每一批蔬果都做質譜普篩，365 天不間斷。<br>
         我們相信，消費者有權利知道自己吃的東西從哪裡來、怎麼種的、農藥殘留幾種。不是口號，是承諾。
       </p>
       <div style="display:flex; gap:12px; margin-bottom:24px;">
@@ -1174,21 +1170,25 @@
         <div class="deny-mock"><div class="deny-fake-data"><span class="num">$9,999</span>/mo · <span class="num">1,234</span> users<br><span class="num">99.9%</span> uptime · <span class="num">10x</span> faster</div></div>
         <div class="deny-info"><strong>5. 假數據過度整齊</strong><p>$9,999、99.9% uptime 這種 demo 味</p></div>
       </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;background:#1F4A1F;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;">整片深綠底<br>＋ 白色文字</div></div>
+        <div class="deny-info"><strong>6. 整片深綠背景 + 白字</strong><p>戲劇化深綠 panel；淺灰 / 淺綠 OK（自 D 同步）</p></div>
+      </div>
     </div>
 
     <h3>結構類禁用</h3>
     <div class="deny-grid">
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-aspect"></div></div>
-        <div class="deny-info"><strong>6. 不規則比例的圖片裁切</strong><p>16:9 / 4:3 / 1:1 以外的奇怪比例</p></div>
+        <div class="deny-info"><strong>7. 不規則比例的圖片裁切</strong><p>4:5 / 4:3 / 16:9 / 21:9 / 1:1 以外的奇怪比例</p></div>
       </div>
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-borders"><div class="border-double"></div><div class="border-dashed"></div><div class="border-gradient"></div></div></div>
-        <div class="deny-info"><strong>7. 過度裝飾邊框</strong><p>雙線、虛線、漸層邊框</p></div>
+        <div class="deny-info"><strong>8. 過度裝飾邊框</strong><p>雙線、虛線、漸層邊框</p></div>
       </div>
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-tooltip">點擊查看更多說明</div></div>
-        <div class="deny-info"><strong>8. 浮動 Tooltip</strong><p>除既有 hover 簡述外的彈出框</p></div>
+        <div class="deny-info"><strong>9. 浮動 Tooltip</strong><p>除既有 hover 簡述外的彈出框</p></div>
       </div>
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-spacing">
@@ -1196,23 +1196,59 @@
           <div class="deny-gap-row"><div class="deny-gap-block"></div><div class="deny-gap-space" style="width:7px;"></div><div class="deny-gap-block"></div><span class="deny-gap-label">7px ✗</span></div>
           <div class="deny-gap-row"><div class="deny-gap-block"></div><div class="deny-gap-space" style="width:13px;"></div><div class="deny-gap-block"></div><span class="deny-gap-label">13px ✗</span></div>
         </div></div>
-        <div class="deny-info"><strong>9. 非 4px 倍數的間距</strong><p>5px、7px、10px、13px、25px 等</p></div>
+        <div class="deny-info"><strong>10. 非 4px 倍數的間距</strong><p>5px、7px、10px、13px、25px 等</p></div>
       </div>
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-radius"><div class="r5"></div><div class="r6"></div><div class="r8"></div></div></div>
-        <div class="deny-info"><strong>10. 5px / 6px / 8px 圓角</strong><p>A 統一 4px</p></div>
+        <div class="deny-info"><strong>11. 5px / 6px / 8px 圓角</strong><p>A 統一 4px</p></div>
       </div>
     </div>
 
-    <h3>文案類禁用</h3>
+    <h3>引導與點擊類禁用（自 D 同步）</h3>
+    <div class="deny-grid">
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;background:#cde0c4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#1a1a1a;">大標題<span style="background:#4ba83b;color:#fff;padding:4px 12px;font-size:11px;">立即購買</span></div></div>
+        <div class="deny-info"><strong>12. Hero 區內放 CTA 按鈕</strong><p>未看內容就被誘導跳轉，CTA 放內容區塊後</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;display:flex;align-items:center;justify-content:center;"><span style="background:#4ba83b;color:#fff;padding:6px 16px;border-radius:9999px;font-size:13px;">關於我們</span></div></div>
+        <div class="deny-info"><strong>13. 標題做成按鈕樣式</strong><p>背景色塊 / 邊框 / Pill 形狀，怕被誤點</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;display:flex;align-items:center;justify-content:center;"><div style="background:#fff;border:1px solid #eee;box-shadow:0 6px 16px rgba(0,0,0,0.18);padding:10px 14px;font-size:12px;color:#595757;text-align:center;">無連結卡片<br><span style="font-size:10px;color:#999;">hover 卻浮起 ✗</span></div></div></div>
+        <div class="deny-info"><strong>14. 無連結 / 互動的卡片加 hover</strong><p>不變色、不浮起、不放大</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div class="deny-text">無毒農的「<span style="font-size:34px;color:#4ba83b;font-weight:700;">好</span>」在哪</div></div>
+        <div class="deny-info"><strong>15. 內文單一字當裝飾字</strong><p>改用 icon 或數字編號</p></div>
+      </div>
+    </div>
+
+    <h3>排版與文案類禁用</h3>
     <div class="deny-grid">
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-text">「賦能您的選擇<br>開啟全新閉環體驗<br>抓手式服務」</div></div>
-        <div class="deny-info"><strong>11. 空洞行業術語</strong><p>「賦能」「閉環」「抓手」「下沉」</p></div>
+        <div class="deny-info"><strong>16. 空洞行業術語</strong><p>「賦能」「閉環」「抓手」「下沉」</p></div>
       </div>
       <div class="deny-card">
         <div class="deny-mock"><div class="deny-text">「完美的選擇<br>極致的體驗<br>革命性的產品」</div></div>
-        <div class="deny-info"><strong>12. 過度稱讚式文案</strong><p>「完美的」「極致的」「革命性的」</p></div>
+        <div class="deny-info"><strong>17. 過度稱讚式文案</strong><p>「完美的」「極致的」「革命性的」</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:18px;color:#1a1a1a;padding:8px;">看見的，<br>看不見的</div></div>
+        <div class="deny-info"><strong>18. Statement Section</strong><p>滿版單句金句區、資訊密度過低（自 D 同步）</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div class="deny-text">「選擇相信，<br>或選擇懷疑」</div></div>
+        <div class="deny-info"><strong>19. 二分法行銷金句</strong><p>對仗式情緒口號，沒講具體事實（自 D 同步）</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:20px;color:#1a1a1a;padding:8px;line-height:1.3;">用最好的心意，為您把關每一口，從產地到餐桌的每一個環節都嚴格控管</div></div>
+        <div class="deny-info"><strong>20. 大字強調段落 > 40 字</strong><p>font-size ≥ 22px 即觸發 ≤ 40 字限制（自 D 同步）</p></div>
+      </div>
+      <div class="deny-card">
+        <div class="deny-mock"><div style="width:100%;height:100%;min-height:72px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:22px;color:#1a1a1a;">品質<br>保證</div></div>
+        <div class="deny-info"><strong>21. 標題斷在詞中換行</strong><p>必須斷在逗點 / 句點後（自 D 同步）</p></div>
       </div>
     </div>
 
