@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenBox Design System · V1.9 規範</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #4ba83b; --green-dark: #008000; --warn: #dc4e43; --stock: #eb6100;
+    --gold: #CAA940; --frozen: #5cb0df; --pale-green: #EFF5E5;
+    --text: #1a1a1a; --text-2: #595757; --muted: #999; --bg: #fafbfb; --line: #e0e4e6; --radius: 4px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; font-weight: 400; }
+  a { color: inherit; text-decoration: none; }
+
+  .topbar { padding: 20px 32px; border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; }
+  .topbar .brand { font-weight: 700; color: var(--green); font-size: 18px; letter-spacing: 0.02em; }
+  .topbar .brand small { font-size: 11px; color: #fff; background: var(--green); font-weight: 600; letter-spacing: 0.1em; margin-left: 8px; padding: 2px 8px; border-radius: var(--radius); }
+  .topbar nav a { font-size: 14px; color: var(--text-2); font-weight: 500; }
+  .topbar nav a:hover { color: var(--green); }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  /* 目錄 nav */
+  .toc { position: sticky; top: 61px; z-index: 15; background: rgba(250,251,251,0.95); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+  .toc .wrap { display: flex; gap: 4px; overflow-x: auto; padding-top: 8px; padding-bottom: 8px; }
+  .toc a { font-size: 13px; color: var(--text-2); font-weight: 500; padding: 8px 12px; border-radius: var(--radius); white-space: nowrap; }
+  .toc a:hover { background: var(--pale-green); color: var(--green-dark); }
+
+  .hero { padding: 56px 0 40px; }
+  .ver-pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: var(--stock); border: 1px solid var(--stock); border-radius: var(--radius); padding: 4px 12px; margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(30px, 4vw, 40px); font-weight: 700; color: var(--green-dark); line-height: 1.3; margin-bottom: 16px; }
+  .hero .lead { font-size: 16px; color: var(--text-2); line-height: 1.85; max-width: 720px; }
+
+  .arch { display: flex; flex-direction: column; gap: 12px; margin: 40px 0 0; }
+  .arch .layer { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 20px 24px; }
+  .arch .layer .tag { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+  .arch .layer .ttl { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .arch .layer .desc { font-size: 14px; color: var(--text-2); }
+  .arch .core { border-left: 3px solid var(--green); }
+  .arch .core .tag { color: var(--green); }
+  .arch .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .arch .split .layer { border-left: 3px solid var(--muted); }
+  .arch .plus { text-align: center; color: var(--muted); font-size: 13px; letter-spacing: 0.1em; }
+
+  section.block { padding: 56px 0; border-top: 1px solid var(--line); }
+  .kicker { font-size: 13px; color: var(--green); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+  h2.sec { font-size: 26px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; line-height: 1.3; }
+  .sec-note { font-size: 14px; color: var(--text-2); margin-bottom: 32px; max-width: 780px; line-height: 1.8; }
+  h3.sub { font-size: 19px; font-weight: 700; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  h4.subsub { font-size: 15px; font-weight: 700; color: var(--text-2); margin: 24px 0 12px; }
+
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 2px 8px; border-radius: var(--radius); vertical-align: middle; }
+  .b-must { background: var(--green-dark); color: #fff; }
+  .b-red { background: var(--warn); color: #fff; }
+  .b-should { background: var(--stock); color: #fff; }
+  .b-may { background: #eef0f1; color: var(--text-2); }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .swatches.sm { grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); }
+  .sw { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; }
+  .sw .chip { height: 56px; }
+  .sw .meta { padding: 12px; }
+  .sw .meta .n { font-size: 13px; font-weight: 500; }
+  .sw .meta .h { font-size: 12px; color: var(--muted); font-family: monospace; }
+
+  .subbrand { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; background: #fff; }
+  .subbrand .sb-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .subbrand .sb-name { font-size: 16px; font-weight: 700; color: var(--green-dark); }
+  .subbrand .sb-tone { font-size: 13px; color: var(--text-2); }
+
+  .tbl-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; background: #fff; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--text-2); background: #f5f7f7; font-size: 13px; }
+  td .mono, .mono { font-family: monospace; font-size: 13px; }
+
+  ul.rules { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.rules li { padding-left: 20px; position: relative; font-size: 14px; color: var(--text); line-height: 1.7; }
+  ul.rules li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+  ul.rules.deny li::before { background: var(--warn); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 20px 24px; }
+  .card h4 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--green-dark); }
+  .card ul.rules li { font-size: 13.5px; }
+
+  .callout { background: var(--pale-green); border-radius: var(--radius); padding: 16px 20px; font-size: 14px; color: var(--text-2); line-height: 1.8; margin: 16px 0; }
+  .callout strong { color: var(--green-dark); }
+
+  /* tabs */
+  .tabs-head { display: flex; gap: 0; border-bottom: 2px solid var(--line); margin-bottom: 8px; }
+  .tab-btn { appearance: none; border: none; background: none; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: 500; color: var(--text-2); padding: 16px 24px; margin-bottom: -2px; border-bottom: 2px solid transparent; text-align: left; }
+  .tab-btn .k { display: block; font-size: 12px; color: var(--muted); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--green-dark); border-bottom-color: var(--green); font-weight: 700; }
+  .tab-btn.active .k { color: var(--green); }
+  .pick-hint { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .panel-lead { font-size: 15px; color: var(--text-2); line-height: 1.85; margin-bottom: 24px; padding: 16px 20px; background: var(--pale-green); border-radius: var(--radius); }
+
+  /* 活動頁「必須提供素材」大 callout — 刻意最搶眼 */
+  .must-provide { border: 2px solid var(--green-dark); border-left: 8px solid var(--green-dark); border-radius: var(--radius); background: var(--pale-green); padding: 32px; margin-bottom: 32px; }
+  .must-provide .mp-k { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--warn); margin-bottom: 12px; }
+  .must-provide .mp-title { font-size: clamp(24px, 3.4vw, 30px); font-weight: 700; color: var(--green-dark); line-height: 1.35; margin-bottom: 16px; }
+  .must-provide .mp-desc { font-size: 16px; color: var(--text); line-height: 1.85; margin-bottom: 24px; }
+  .must-provide .mp-desc strong { color: var(--warn); }
+  .need-box { background: #fff; border: 1px solid var(--green); border-radius: var(--radius); padding: 20px 24px; }
+  .need-box .need-h { font-size: 14px; font-weight: 700; color: var(--green-dark); margin-bottom: 12px; }
+  .need-box ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+  .need-box ul li { position: relative; padding-left: 24px; font-size: 14px; line-height: 1.6; }
+  .need-box ul li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--green); font-weight: 700; }
+
+  ol.flow { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 12px; }
+  ol.flow li { counter-increment: s; padding-left: 44px; position: relative; font-size: 14px; line-height: 1.7; }
+  ol.flow li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 28px; height: 28px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+
+  pre { background: #1e2422; color: #e6ede9; border-radius: var(--radius); padding: 20px; overflow-x: auto; font-size: 13px; line-height: 1.7; }
+
+  /* ===== 視覺化示意 ===== */
+  .type-row { display: flex; align-items: baseline; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .type-row .type-label { flex-shrink: 0; width: 120px; font-size: 12px; color: var(--muted); font-family: monospace; }
+  .ts-h1 { font-size: 39px; font-weight: 500; line-height: 1.25; }
+  .ts-h2 { font-size: 30px; font-weight: 400; }
+  .ts-h3 { font-size: 24px; font-weight: 400; }
+  .ts-h4 { font-size: 19px; font-weight: 400; }
+  .ts-body { font-size: 16px; font-weight: 300; }
+  .ts-small { font-size: 14px; font-weight: 300; }
+  .ts-note { font-size: 13px; font-weight: 300; color: var(--text-2); }
+
+  .radius-demo { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-demo .rd { text-align: center; }
+  .radius-demo .rd .box { width: 72px; height: 56px; background: var(--pale-green); border: 1px solid var(--green); }
+  .radius-demo .rd .lbl { font-size: 12px; color: var(--muted); margin-top: 8px; font-family: monospace; }
+
+  .gap-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .gap-block { width: 24px; height: 24px; background: var(--green); flex-shrink: 0; }
+  .gap-space { height: 24px; background: var(--pale-green); border: 1px solid #cfe0bf; flex-shrink: 0; }
+  .gap-label { font-size: 13px; font-weight: 500; font-family: monospace; min-width: 80px; }
+  .gap-token { font-size: 12px; color: var(--muted); }
+
+  .bp-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .bp-cell { border-radius: var(--radius); padding: 16px 20px; font-size: 13px; color: #fff; min-width: 160px; }
+  .bp-cell strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .bp-mobile { background: #8fbf7f; } .bp-tablet { background: #5a9a4a; } .bp-desktop { background: var(--green-dark); }
+
+  .btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr)); gap: 16px; }
+  .btn-cell { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; text-align: center; background: #fff; }
+  .btn-cell .bl { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .demo-btn { display: inline-block; border: none; font-family: inherit; font-size: 15px; font-weight: 500; padding: 12px 28px; border-radius: 4px; color: #fff; }
+  .db-secondary { background: transparent; color: var(--green-dark); border-bottom: 1px solid var(--green-dark); border-radius: 0; padding: 4px 0; }
+  .db-jubaby { background: #EE8D8D; } .db-smoothie { background: #FF755A; } .db-baby { background: #FFA3A3; } .db-eagle { background: #4ba83b; } .db-primary { background: #4ba83b; }
+
+  footer { text-align: center; padding: 40px 32px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); background: #fff; margin-top: 40px; }
+  footer a { color: var(--text-2); }
+  footer a:hover { color: var(--green); }
+
+  @media (max-width: 768px) {
+    .wrap { padding: 0 20px; }
+    .arch .split { grid-template-columns: 1fr; }
+    .hero { padding: 40px 0 32px; }
+    section.block { padding: 40px 0; }
+    .tab-btn { padding: 14px 14px; font-size: 15px; }
+    .must-provide { padding: 24px 20px; }
+    .need-box ul { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">GreenBox Design System <small>V1.9</small></div>
+  <nav><a href="../index.html">← 首頁</a></nav>
+</header>
+
+<div class="toc">
+  <div class="wrap">
+    <a href="#core">核心</a>
+    <a href="#brand">品牌識別</a>
+    <a href="#layout">版面紀律</a>
+    <a href="#copy">文案</a>
+    <a href="#a11y">無障礙</a>
+    <a href="#seo">AI 友善</a>
+    <a href="#slop">AI Slop 禁用</a>
+    <a href="#surface">表現層</a>
+    <a href="#pages">形象 / 活動頁規範</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="ver-pill">V1.9 · 微調中，穩定後改 V2</span>
+    <h1>一套核心，兩種延伸</h1>
+    <p class="lead">
+      無毒農所有網頁共用一份「核心規範」當地基，決定不管長什麼樣都不能破的護欄與品牌識別；
+      實際長相由「形象頁規範」或「活動頁規範」決定，兩者互斥——<strong>做一個頁面時，只會套用其中一種</strong>。
+    </p>
+
+    <div class="arch">
+      <div class="layer core">
+        <div class="tag">核心 · 全頁面必守</div>
+        <div class="ttl">DesignSystem 核心規範</div>
+        <div class="desc">護欄（不誤導點擊、版面紀律、文案品質、無障礙、AI 友善、AI Slop 禁用）＋ 品牌 token（色彩、字型、字級）。全部 MUST。</div>
+      </div>
+      <div class="plus">＋ 擇一延伸 ↓</div>
+      <div class="split">
+        <div class="layer">
+          <div class="tag">形象頁規範 · 低頻</div>
+          <div class="ttl">形象頁</div>
+          <div class="desc">品牌門面的固定長相，一組穩定鎖定值。</div>
+        </div>
+        <div class="layer">
+          <div class="tag">活動頁規範 · 高頻</div>
+          <div class="ttl">活動頁</div>
+          <div class="desc">少數建議 + 每檔外掛風格參考素材，長相由素材決定。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 核心 ============ -->
+  <section class="block" id="core">
+    <div class="kicker">Layer 1 — 核心</div>
+    <h2 class="sec">核心規範 <span class="badge b-must">全部 MUST</span></h2>
+    <p class="sec-note">
+      這是地基。無論做哪一種頁面都要遵守，只放「不管長什麼樣都不能破的東西」，不決定風格長相。
+      分級用語：<span class="badge b-must">MUST</span> 硬約束不可違背 · <span class="badge b-should">SHOULD</span> 建議可有理由違背 · <span class="badge b-may">MAY</span> 自由。本區除特別註記外全部 MUST。
+      完整文件：<a href="../docs/spec-core.md" style="color:var(--green);font-weight:500;">spec-core.md ↗</a>
+    </p>
+
+    <h3 class="sub" id="brand">一、品牌識別 — 可加不可換</h3>
+
+    <h4 class="subsub">全站基礎色（主品牌）</h4>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#4ba83b"></div><div class="meta"><div class="n">主綠</div><div class="h">#4ba83b</div></div></div>
+      <div class="sw"><div class="chip" style="background:#008000"></div><div class="meta"><div class="n">標題深綠</div><div class="h">#008000</div></div></div>
+      <div class="sw"><div class="chip" style="background:#dc4e43"></div><div class="meta"><div class="n">警告紅</div><div class="h">#dc4e43</div></div></div>
+      <div class="sw"><div class="chip" style="background:#eb6100"></div><div class="meta"><div class="n">庫存橙</div><div class="h">#eb6100</div></div></div>
+      <div class="sw"><div class="chip" style="background:#CAA940"></div><div class="meta"><div class="n">部落格金</div><div class="h">#CAA940</div></div></div>
+      <div class="sw"><div class="chip" style="background:#5cb0df"></div><div class="meta"><div class="n">冷凍藍</div><div class="h">#5cb0df</div></div></div>
+      <div class="sw"><div class="chip" style="background:#EFF5E5;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">極淺綠</div><div class="h">#EFF5E5</div></div></div>
+    </div>
+
+    <h4 class="subsub">中性色階（5 階）</h4>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#1a1a1a"></div><div class="meta"><div class="n">文字主色</div><div class="h">#1a1a1a</div></div></div>
+      <div class="sw"><div class="chip" style="background:#595757"></div><div class="meta"><div class="n">文字中色</div><div class="h">#595757</div></div></div>
+      <div class="sw"><div class="chip" style="background:#999"></div><div class="meta"><div class="n">文字註解</div><div class="h">#999999</div></div></div>
+      <div class="sw"><div class="chip" style="background:#fff;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">背景白</div><div class="h">#ffffff</div></div></div>
+      <div class="sw"><div class="chip" style="background:#ecf0f1;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">背景灰</div><div class="h">#ecf0f1</div></div></div>
+    </div>
+
+    <h4 class="subsub">子品牌完整色票</h4>
+    <div class="subbrand">
+      <div class="sb-head"><span class="sb-name">粥寶寶</span><span class="sb-tone">多種粉紅 + 白底 + 棕色 logo/文字 + 蔬果聯想點綴</span></div>
+      <div class="swatches sm">
+        <div class="sw"><div class="chip" style="background:#EE8D8D"></div><div class="meta"><div class="n">主粉紅</div><div class="h">#EE8D8D</div></div></div>
+        <div class="sw"><div class="chip" style="background:#EA6E6E"></div><div class="meta"><div class="n">紅粉變體</div><div class="h">#EA6E6E</div></div></div>
+        <div class="sw"><div class="chip" style="background:#ED7454"></div><div class="meta"><div class="n">橘粉</div><div class="h">#ED7454</div></div></div>
+        <div class="sw"><div class="chip" style="background:#F8D2CC"></div><div class="meta"><div class="n">淡粉背景</div><div class="h">#F8D2CC</div></div></div>
+        <div class="sw"><div class="chip" style="background:#965F29"></div><div class="meta"><div class="n">Logo 主棕</div><div class="h">#965F29</div></div></div>
+        <div class="sw"><div class="chip" style="background:#805033"></div><div class="meta"><div class="n">深棕</div><div class="h">#805033</div></div></div>
+        <div class="sw"><div class="chip" style="background:#CCA47C"></div><div class="meta"><div class="n">駝色</div><div class="h">#CCA47C</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FCF1E6;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">米色背景</div><div class="h">#FCF1E6</div></div></div>
+      </div>
+    </div>
+    <div class="subbrand">
+      <div class="sb-head"><span class="sb-name">綠拿鐵</span><span class="sb-tone">偏黃淡綠主視覺 + 草綠強調 + 橘點綴 + 珊瑚紅 CTA</span></div>
+      <div class="swatches sm">
+        <div class="sw"><div class="chip" style="background:#C8D194"></div><div class="meta"><div class="n">主色 淡綠</div><div class="h">#C8D194</div></div></div>
+        <div class="sw"><div class="chip" style="background:#bacb62"></div><div class="meta"><div class="n">草綠</div><div class="h">#bacb62</div></div></div>
+        <div class="sw"><div class="chip" style="background:#6da333"></div><div class="meta"><div class="n">深草綠</div><div class="h">#6da333</div></div></div>
+        <div class="sw"><div class="chip" style="background:#91ba57"></div><div class="meta"><div class="n">中草綠</div><div class="h">#91ba57</div></div></div>
+        <div class="sw"><div class="chip" style="background:#f7ad39"></div><div class="meta"><div class="n">暖橘 點綴</div><div class="h">#f7ad39</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FF755A"></div><div class="meta"><div class="n">珊瑚紅 CTA</div><div class="h">#FF755A</div></div></div>
+      </div>
+    </div>
+    <div class="subbrand">
+      <div class="sb-head"><span class="sb-name">等家寶寶</span><span class="sb-tone">粉紅按鈕為主 + 深珊瑚紅 logo + 白底（公益）</span></div>
+      <div class="swatches sm">
+        <div class="sw"><div class="chip" style="background:#FFA3A3"></div><div class="meta"><div class="n">粉紅 按鈕</div><div class="h">#FFA3A3</div></div></div>
+        <div class="sw"><div class="chip" style="background:#E66659"></div><div class="meta"><div class="n">Logo 珊瑚紅</div><div class="h">#E66659</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FFEFEF;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">淡粉背景</div><div class="h">#FFEFEF</div></div></div>
+        <div class="sw"><div class="chip" style="background:#F4A83A"></div><div class="meta"><div class="n">濃黃（特殊）</div><div class="h">#F4A83A</div></div></div>
+        <div class="sw"><div class="chip" style="background:#80A5D8"></div><div class="meta"><div class="n">淡藍（特殊）</div><div class="h">#80A5D8</div></div></div>
+      </div>
+    </div>
+    <div class="subbrand">
+      <div class="sb-head"><span class="sb-name">益菓保</span><span class="sb-tone">墨綠主標 + 主品牌綠勾號 + 淺灰背景 + 深紅強調 + 黃點綴</span></div>
+      <div class="swatches sm">
+        <div class="sw"><div class="chip" style="background:#2D5A35"></div><div class="meta"><div class="n">墨綠 主標</div><div class="h">#2D5A35</div></div></div>
+        <div class="sw"><div class="chip" style="background:#4ba83b"></div><div class="meta"><div class="n">主品牌綠</div><div class="h">#4ba83b</div></div></div>
+        <div class="sw"><div class="chip" style="background:#ECECEC;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">淺灰背景</div><div class="h">#ECECEC</div></div></div>
+        <div class="sw"><div class="chip" style="background:#B5384A"></div><div class="meta"><div class="n">深紅 強調</div><div class="h">#B5384A</div></div></div>
+        <div class="sw"><div class="chip" style="background:#F4DEDB;border-bottom:1px solid #e0e4e6"></div><div class="meta"><div class="n">淺紅背景</div><div class="h">#F4DEDB</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FCAD10"></div><div class="meta"><div class="n">黃 點綴</div><div class="h">#FCAD10</div></div></div>
+      </div>
+    </div>
+    <p class="sec-note" style="margin:12px 0 0;font-size:13px;">⚠️ 部分子品牌色為視覺估值、待 Owner 精確確認；益菓保字型（思源圓體 vs Noto Sans TC）待拍板。</p>
+
+    <h4 class="subsub">字型與字級</h4>
+    <p class="sec-note" style="margin-bottom:14px;">中文全站（含標題與內文）一律 <strong>Noto Sans TC</strong>，英文 sans-serif。禁止 Inter / Roboto / Arial 當主字型。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>級別</th><th>字級</th><th>行高</th><th>字重</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>h1</td><td>39px</td><td>1.25</td><td>500</td><td>頁面主標</td></tr>
+          <tr><td>h2</td><td>30px</td><td>1.3</td><td>400</td><td>Section 標題</td></tr>
+          <tr><td>h3</td><td>24px</td><td>1.4</td><td>400</td><td>子標題</td></tr>
+          <tr><td>h4</td><td>19px</td><td>1.5</td><td>400</td><td>小標題</td></tr>
+          <tr><td>body</td><td>16px</td><td>1.85</td><td>300</td><td>正文（大行高）</td></tr>
+          <tr><td>small</td><td>14px</td><td>1.6</td><td>300</td><td>輔助</td></tr>
+          <tr><td>note</td><td>13px</td><td>1.5</td><td>300</td><td>註解</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:24px;">
+      <div class="type-row"><div class="type-label">h1 / 39 / 500</div><div class="ts-h1">無毒農 用信任連結產地與餐桌</div></div>
+      <div class="type-row"><div class="type-label">h2 / 30 / 400</div><div class="ts-h2">我們的承諾與檢驗標準</div></div>
+      <div class="type-row"><div class="type-label">h3 / 24 / 400</div><div class="ts-h3">產地直送、每日篩檢</div></div>
+      <div class="type-row"><div class="type-label">h4 / 19 / 400</div><div class="ts-h4">質譜篩檢實驗室</div></div>
+      <div class="type-row"><div class="type-label">body / 16 / 300</div><div class="ts-body">無毒農成立的初衷，是用信任連結產地和餐桌。</div></div>
+      <div class="type-row"><div class="type-label">small / 14 / 300</div><div class="ts-small">每批作物皆經質譜普篩法檢驗</div></div>
+      <div class="type-row"><div class="type-label">note / 13 / 300</div><div class="ts-note">＊本標準資訊以官網公告為準</div></div>
+    </div>
+
+    <h4 class="subsub">品牌識別規則 — 什麼不可動、什麼可依主題調</h4>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>項目</th><th>規則</th><th>級別</th></tr></thead>
+        <tbody>
+          <tr><td>Logo</td><td><strong>不可改色、不可變形</strong></td><td><span class="badge b-must">MUST</span></td></tr>
+          <tr><td>主字型 Noto Sans TC</td><td><strong>不可換</strong></td><td><span class="badge b-must">MUST</span></td></tr>
+          <tr><td>子品牌主色</td><td>做該子品牌頁時<strong>不可換</strong></td><td><span class="badge b-must">MUST</span></td></tr>
+          <tr><td>品牌主綠 <span class="mono">#4ba83b</span> / 深綠 <span class="mono">#008000</span></td><td>品牌識別主色。形象頁鎖定使用；<strong>活動頁建議優先，但主色與 CTA 色可依主題參考改用主題色</strong></td><td><span class="badge b-should">SHOULD</span></td></tr>
+          <tr><td>主題色 / 主題輔色</td><td>活動頁依主題參考設定主色、輔色與 CTA 色（節慶紅金、聯名色）；仍受無障礙對比與 AI Slop 約束</td><td><span class="badge b-may">MAY</span></td></tr>
+          <tr><td>缺功能色（warning / info）</td><td>先問 Owner，<strong>不可自己湊 hex</strong></td><td><span class="badge b-must">MUST</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-note" style="margin:12px 0 0;font-size:13px;">品牌綠不再是「每頁 CTA 都必須」——logo 已提供品牌識別，活動頁可為主題氣氛改用主題色 CTA；形象頁仍鎖定品牌綠。</p>
+
+    <h3 class="sub">二、不誤導點擊</h3>
+    <ul class="rules">
+      <li><strong>Hero 內不放 CTA 按鈕</strong>——避免使用者還沒看內容就被誘導跳轉，說服不足就跳走反而轉換差；CTA 放內容區塊之後。</li>
+      <li><strong>任何標題、裝飾文字不做按鈕樣式</strong>（不加背景色塊、邊框、Pill 膠囊形狀），怕被誤認可點；要強調用字級 / 字重 / 顏色。</li>
+      <li><strong>沒有連結或互動的卡片 / 區塊，一律不加 hover 效果</strong>（不變色、不浮起、不變邊框、不放大）。</li>
+    </ul>
+
+    <h3 class="sub" id="layout">三、版面紀律</h3>
+    <h4 class="subsub">間距：一律 4px 倍數</h4>
+    <p class="sec-note" style="margin-bottom:16px;">禁止 5 / 7 / 10 / 13 / 25px 等非倍數值。兩方塊之間的空隙 = 對應間距大小：</p>
+    <div style="margin-bottom:8px;">
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:4px;"></div><div class="gap-block"></div><span class="gap-label">4px</span><span class="gap-token">xs · 圖示與文字</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:8px;"></div><div class="gap-block"></div><span class="gap-label">8px</span><span class="gap-token">sm · 緊密區塊</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:16px;"></div><div class="gap-block"></div><span class="gap-label">16px</span><span class="gap-token">md · 段落內元素</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:24px;"></div><div class="gap-block"></div><span class="gap-label">24px</span><span class="gap-token">lg · 段落間</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:32px;"></div><div class="gap-block"></div><span class="gap-label">32px</span><span class="gap-token">xl · 區塊內子段落</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:48px;"></div><div class="gap-block"></div><span class="gap-label">48px</span><span class="gap-token">2xl · Section 內主分隔</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:64px;"></div><div class="gap-block"></div><span class="gap-label">64px</span><span class="gap-token">3xl · Section 邊距</span></div>
+      <div class="gap-row"><div class="gap-block"></div><div class="gap-space" style="width:96px;"></div><div class="gap-block"></div><span class="gap-label">96px</span><span class="gap-token">4xl · 大 Section 之間</span></div>
+    </div>
+
+    <h4 class="subsub">圓角：固定級距 + 同頁一致</h4>
+    <p class="sec-note" style="margin-bottom:16px;">只能用這些級距（禁 3 / 5 / 7 / 10）。<strong>同一頁圓角必須一致</strong>，不可按鈕 4px、卡片 8px 混用。</p>
+    <div class="radius-demo" style="margin-bottom:8px;">
+      <div class="rd"><div class="box" style="border-radius:0;"></div><div class="lbl">0</div></div>
+      <div class="rd"><div class="box" style="border-radius:2px;"></div><div class="lbl">2</div></div>
+      <div class="rd"><div class="box" style="border-radius:4px;"></div><div class="lbl">4 · 預設</div></div>
+      <div class="rd"><div class="box" style="border-radius:6px;"></div><div class="lbl">6</div></div>
+      <div class="rd"><div class="box" style="border-radius:8px;"></div><div class="lbl">8</div></div>
+      <div class="rd"><div class="box" style="border-radius:12px;"></div><div class="lbl">12</div></div>
+      <div class="rd"><div class="box" style="border-radius:16px;"></div><div class="lbl">16</div></div>
+      <div class="rd"><div class="box" style="border-radius:24px;"></div><div class="lbl">24</div></div>
+      <div class="rd"><div class="box" style="border-radius:9999px;"></div><div class="lbl">full</div></div>
+    </div>
+
+    <h4 class="subsub">RWD 三段斷點</h4>
+    <div class="bp-row" style="margin-bottom:16px;">
+      <div class="bp-cell bp-mobile"><strong>mobile</strong>&lt; 768px · 手機</div>
+      <div class="bp-cell bp-tablet"><strong>tablet</strong>768~1199px · 平板</div>
+      <div class="bp-cell bp-desktop"><strong>desktop</strong>≥ 1200px · 桌機</div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>斷點</th><th>範圍</th><th>h1 / body 放大基準</th></tr></thead>
+        <tbody>
+          <tr><td>mobile</td><td>&lt; 768px</td><td>h1 32 / body 16</td></tr>
+          <tr><td>tablet</td><td>768 ~ 1199px</td><td>h1 40 / body 17</td></tr>
+          <tr><td>desktop</td><td>≥ 1200px</td><td>h1 48 / body 18</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4 class="subsub">同區塊對齊規則</h4>
+    <p class="sec-note" style="margin-bottom:12px;">不同 section 容器寬度可不同，但<strong>同一 section 內所有元素容器寬度必須對齊一致</strong>。寫一個 section 時自問：</p>
+    <ul class="rules">
+      <li>這 section 用了幾種容器寬度？（理想 1 種，最多 2 種，第 2 種須為「視覺層」如大圖、banner）</li>
+      <li>同類元素（標題、內文、卡片、按鈕）左右邊界是否完全切齊？</li>
+      <li>不齊時差距 ≥ 64px（可接受、讀者理解為刻意）還是 &lt; 32px（<strong>「邊界靠近但沒對齊」，比明顯不同還醜，必須改</strong>）？</li>
+    </ul>
+    <h4 class="subsub">表格 mobile 卡片化</h4>
+    <p class="sec-note" style="margin-bottom:0;">桌機保留完整 <span class="mono">&lt;table&gt;</span> 結構；mobile 一律卡片化（每 row 變獨立卡片、label/value 對照），不用橫向滾動。</p>
+
+    <h3 class="sub" id="copy">四、文案品質</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>禁用類型</th><th>說明 / 改寫方向</th></tr></thead>
+        <tbody>
+          <tr><td>空洞行業術語</td><td>「賦能」「閉環」「抓手」「下沉」</td></tr>
+          <tr><td>過度稱讚式</td><td>「完美的」「極致的」「革命性的」</td></tr>
+          <tr><td>二分法行銷金句</td><td>「選擇 X 或 Y」「看見/看不見」「不只是 X 更是 Y」→ 改寫成具體事實（如「每批檢驗 100+ 種農藥殘留」）</td></tr>
+          <tr><td>過長</td><td>標題 &gt; 20 字、段落 &gt; 4 行</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <strong>強調大字（font-size ≥ 22px 的獨立段落）</strong>：內文 ≤ 40 字、加寬 letter-spacing 0.04~0.08em 與 line-height 1.4~1.6、每 section 最多一個、用 <span class="mono">&lt;br&gt;</span> 強制斷在逗點/句點後，<strong>不可斷在詞中</strong>（「不容妥協」須同一行）。
+    </div>
+    <div class="callout">
+      <strong>Statement Section 判斷（命中 3 條以上即禁用）</strong>：① 整段只有一句話 ② 字級 ≥ 22px ③ 容器 ≥ 880px ④ 上下 padding ≥ 96px ⑤ 內容是空洞金句。例外：活動頁主視覺標語經明確標註強化主旨可用，並註記破例原因。
+    </div>
+
+    <h3 class="sub" id="a11y">五、無障礙</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>項目</th><th>標準</th></tr></thead>
+        <tbody>
+          <tr><td>色彩對比</td><td>文字與背景 ≥ 4.5:1（WCAG AA）</td></tr>
+          <tr><td>字級最小</td><td>13px 為原則</td></tr>
+          <tr><td>Focus 狀態</td><td>必須可見（input / button / link）</td></tr>
+          <tr><td>觸控面積</td><td>可點元件 ≥ 44×44px</td></tr>
+          <tr><td>圖片 alt</td><td>內容圖必填、裝飾圖 <span class="mono">alt=""</span></td></tr>
+          <tr><td>鍵盤導覽</td><td>Tab 順序合理、Enter 可觸發</td></tr>
+          <tr><td>動畫</td><td>必須支援 <span class="mono">prefers-reduced-motion</span> 關閉</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub" id="seo">六、AI 友善（SEO / AEO）</h3>
+    <p class="sec-note" style="margin-bottom:16px;">讓 AI 搜尋引擎（ChatGPT、Perplexity、Gemini）能正確理解引用。核心三條：結構清楚 + 內容明確 + 機器可讀。</p>
+    <div class="cards">
+      <div class="card">
+        <h4>語意化 HTML</h4>
+        <ul class="rules">
+          <li>每頁一個 <span class="mono">&lt;h1&gt;</span> 含核心關鍵字</li>
+          <li>H2~H6 嚴格遞進、不跳級、不為視覺用 heading</li>
+          <li>用 semantic tag / <span class="mono">ul</span> / <span class="mono">table</span> / <span class="mono">blockquote</span>，不用 div 模擬</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>內容結構（AEO）</h4>
+        <ul class="rules">
+          <li>問答式：問題當 H2/H3、下接答案</li>
+          <li>倒金字塔：結論先行</li>
+          <li>list / table 結構化 + 具體數據</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Metadata / Crawler</h4>
+        <ul class="rules">
+          <li><span class="mono">title</span> 60 字 / <span class="mono">description</span> 155 字 / OG 四項</li>
+          <li>Schema.org JSON-LD（Product / Article / FAQPage / BreadcrumbList）</li>
+          <li>robots 開放 AI bot、sitemap 月更、SSR 直出、3 秒首屏</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub" id="slop">七、AI Slop 禁用清單（10 條）</h3>
+    <p class="sec-note" style="margin-bottom:16px;">無論什麼主題都不准出現，活動頁再有趣也不例外。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>#</th><th>禁用</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>滿版彩色漸層套版（紫到藍、彩虹漸層等方向）</td></tr>
+          <tr><td>2</td><td>圓角卡片 + 彩色左邊框 + icon + 標題 + 描述四件組</td></tr>
+          <tr><td>3</td><td>Emoji 當 UI 裝飾（🚀✨💡 當項目符號 / 按鈕 icon / 標題開頭）</td></tr>
+          <tr><td>4</td><td>線條風格 SVG 插圖（機器人、燈泡、齒輪等抽象示意）</td></tr>
+          <tr><td>5</td><td>假數據過度整齊（$9,999、99.9% uptime、1,234 users）</td></tr>
+          <tr><td>6</td><td>整片深綠背景 + 白字（淺灰 / 淺綠 OK）</td></tr>
+          <tr><td>7</td><td>內文單字當裝飾字（改用 icon 或數字編號）</td></tr>
+          <tr><td>8</td><td>不規則比例圖片裁切（4:5 / 4:3 / 16:9 / 21:9 / 1:1 以外）</td></tr>
+          <tr><td>9</td><td>過度裝飾邊框（雙線、虛線、漸層邊框）</td></tr>
+          <tr><td>10</td><td>浮動 Tooltip（除既有 hover 簡述外的彈出框）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub" id="surface">八、表現層清單 — 核心只管紀律，數值交給延伸</h3>
+    <p class="sec-note" style="margin-bottom:16px;">這張表是三份文件的交界：核心保證紀律，形象頁填鎖定值，活動頁看權限欄。空白 / 未指定處，形象頁 fallback 到鎖定值、活動頁 fallback 到少數建議其餘由素材補。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>表現面向</th><th>核心紀律 <span class="badge b-must">MUST</span></th><th>形象頁</th><th>活動頁</th></tr></thead>
+        <tbody>
+          <tr><td>圓角</td><td>固定級距、同頁一致</td><td>4px</td><td><span class="badge b-may">MAY</span> 依主題覆蓋、須同頁一致</td></tr>
+          <tr><td>Section padding</td><td>4px 倍數</td><td>桌機 64px</td><td><span class="badge b-should">SHOULD</span> 留白偏大</td></tr>
+          <tr><td>容器 max-width</td><td>同區塊對齊</td><td>商品 880 / Blog 720 / 表單 524</td><td><span class="badge b-may">MAY</span> 自訂</td></tr>
+          <tr><td>表單樣式</td><td>focus 可見、16px 防 zoom</td><td>框線式</td><td><span class="badge b-may">MAY</span> 框線 / 底線</td></tr>
+          <tr><td>Icon</td><td>粗細一致、繼承父層色</td><td>Font Awesome（允許 fill）</td><td><span class="badge b-may">MAY</span> 換風格</td></tr>
+          <tr><td>懸浮元素</td><td>不遮蓋關鍵內容</td><td>保留 FAB / 錨點 / sticky CTA</td><td><span class="badge b-may">MAY</span> 用或不用</td></tr>
+          <tr><td>詳情頁 layout</td><td>響應式不破版</td><td>桌機左圖右文 50/50</td><td><span class="badge b-may">MAY</span> 自訂</td></tr>
+          <tr><td>圖文搭配</td><td><span class="mono">figure</span> + alt 必填</td><td>50/50、4:3</td><td><span class="badge b-may">MAY</span> 比例交替自訂</td></tr>
+          <tr><td>圖片按鈕組</td><td>整張 <span class="mono">a</span> 可點、hover 僅可點才有</td><td>允許 overlay + zoom</td><td><span class="badge b-may">MAY</span> 自訂變體</td></tr>
+          <tr><td>Banner 比例</td><td>圓點在圖外、autoplay ≥ 5 秒、mobile 1:1</td><td>桌機 16:9</td><td><span class="badge b-should">SHOULD</span> 16:9~21:9</td></tr>
+          <tr><td>Toast / Loading / 空狀態</td><td>錯誤不自動消失、可讀</td><td>右上 / spinner / 有 icon</td><td><span class="badge b-may">MAY</span> 自訂</td></tr>
+          <tr><td>動畫</td><td>節制、可被 reduced-motion 關閉</td><td>沿用既有 slider</td><td><span class="badge b-may">MAY</span> 增加（scroll fade）</td></tr>
+          <tr><td>攝影 / 素材風格</td><td>不踩 AI Slop</td><td>極簡、自然光、低飽和</td><td>由風格參考素材決定</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">九、三層協作與衝突規則</h3>
+    <pre>任何頁面 = 核心（全 MUST）
+形象頁   = 核心 + 形象頁延伸（穩定鎖定值）
+活動頁   = 核心 + 活動頁延伸（少數建議）+ 該檔風格參考素材（每檔外掛）
+
+衝突優先序：  核心護欄 (MUST)  &gt;  該檔風格參考素材  &gt;  延伸的 SHOULD / MAY 建議
+白話：護欄永遠贏；護欄之內，新素材贏過預設建議。</pre>
+  </section>
+
+  <!-- ============ 延伸（tabs） ============ -->
+  <section class="block" id="pages">
+    <div class="kicker">Layer 2 — 頁面規範</div>
+    <h2 class="sec">形象頁規範 / 活動頁規範 <span style="font-size:15px;color:var(--muted);font-weight:400;">（擇一套用）</span></h2>
+    <p class="sec-note">這裡才是「頁面實際長怎樣」的規範，跟核心一樣重要。兩者互斥，切換下方分頁看各自規範——做一個頁面時只會用到其中一頁。</p>
+
+    <div class="tabs-head" role="tablist">
+      <button class="tab-btn active" data-tab="image" role="tab">形象頁延伸<span class="k">品牌門面 · 低頻</span></button>
+      <button class="tab-btn" data-tab="activity" role="tab">活動頁延伸<span class="k">檔期活動 · 高頻</span></button>
+    </div>
+    <p class="pick-hint">一次只會套用一種延伸 · 目前顯示：<span id="pick-label">形象頁</span></p>
+
+    <!-- 形象頁 -->
+    <div class="tab-panel active" data-panel="image">
+      <p class="panel-lead">
+        <strong>無毒農品牌門面的固定長相</strong>，風格穩定、低頻更新。這是一組鎖定值，不需外掛素材，直接照做。
+        完整文件：<a href="../docs/spec-image-page.md" style="color:var(--green);font-weight:500;">spec-image-page.md ↗</a>
+      </p>
+
+      <h4 class="subsub">按鈕</h4>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>類型</th><th>規格</th></tr></thead>
+          <tbody>
+            <tr><td>主 CTA</td><td>主綠底白字、圓角 4px、padding 12px 28px、weight 500、hover 反白（背景變白、文字變綠、加 1px 綠邊）</td></tr>
+            <tr><td>次要按鈕</td><td>文字底線型：透明底、文字 <span class="mono">#008000</span>、無框、1px 底線始終顯示、hover 變主綠；深底上改白色</td></tr>
+            <tr><td>子品牌按鈕</td><td>各品牌主色底、白字、hover 反白（見核心子品牌色票）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-grid" style="margin-top:16px;">
+        <div class="btn-cell"><div class="bl">主 CTA</div><span class="demo-btn db-primary">立即購買</span></div>
+        <div class="btn-cell"><div class="bl">次要按鈕</div><span class="demo-btn db-secondary">了解更多</span></div>
+        <div class="btn-cell"><div class="bl">粥寶寶</div><span class="demo-btn db-jubaby">立即訂購</span></div>
+        <div class="btn-cell"><div class="bl">綠拿鐵</div><span class="demo-btn db-smoothie">加入購物車</span></div>
+        <div class="btn-cell"><div class="bl">等家寶寶</div><span class="demo-btn db-baby">立即捐款</span></div>
+        <div class="btn-cell"><div class="bl">益菓保</div><span class="demo-btn db-eagle">益菓保產品</span></div>
+      </div>
+
+      <h4 class="subsub">圓角 / 間距 / 容器</h4>
+      <div class="tbl-scroll">
+        <table>
+          <tbody>
+            <tr><td>圓角</td><td>4px（頭像 / 圓形圖示 50%）</td></tr>
+            <tr><td>Section padding</td><td>桌機 64px / 手機 32px；大 Section 之間 96px</td></tr>
+            <tr><td>容器 max-width</td><td>商品 880 / Blog 720 / 表單 524 / 會員全寬 / 首頁子品牌全寬內部 880</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="subsub">常用版型參數</h4>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>版型</th><th>形象頁參數</th></tr></thead>
+          <tbody>
+            <tr><td>列表頁</td><td>商品桌機 2 欄、卡片 4:5 直立、gap 32px、頂部 chip carousel 篩選；Blog/訂單 2~3 欄</td></tr>
+            <tr><td>詳情頁</td><td>桌機左圖右資訊 50/50、主 CTA inline（mobile sticky bottom）</td></tr>
+            <tr><td>表單頁</td><td>524px 置中、單欄（姓名/電話可雙欄）、欄位 gap 16px</td></tr>
+            <tr><td>Landing Page</td><td>Hero 84~90vh、區塊間距桌機 128~160px、Hero 內不放 CTA</td></tr>
+            <tr><td>Banner</td><td>桌機 16:9、mobile 1:1、圓點在圖外、autoplay 7 秒、無左右箭頭</td></tr>
+            <tr><td>圖文搭配</td><td>桌機左圖右文 50/50、圖 4:3 或 16:9、gap 48px、交替；sticky 圖（mobile &lt;900px 改 static）</td></tr>
+            <tr><td>圖片段落</td><td>單張大圖全寬 21:9、雙/三/四圖網格、gap 48px</td></tr>
+            <tr><td>圖片按鈕組</td><td>桌機 3~4 卡、圖 4:3、兩種變體（圖下卡片 / 圖內 overlay）、hover zoom 5% + 陰影、整張 <span class="mono">a</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="subsub">元件</h4>
+      <div class="tbl-scroll">
+        <table>
+          <tbody>
+            <tr><td>表單</td><td>框線式：1px solid <span class="mono">#999</span> 框、圓角 4px、focus 邊框變綠、字級 16px（防 iOS zoom）；checkbox 16×16、label 14px/500</td></tr>
+            <tr><td>Icon</td><td>Font Awesome、16/20/24/32px、繼承父層色、允許 fill icon</td></tr>
+            <tr><td>Toast</td><td>右上角（mobile 頂部全寬）、320px、成功 3 秒自動消失、錯誤手動關</td></tr>
+            <tr><td>Loading</td><td>中央 spinner +「載入中...」；區塊 skeleton；按鈕變「處理中...」+ disabled</td></tr>
+            <tr><td>空狀態</td><td>icon 32px <span class="mono">#999</span> + 主文字 16px + 輔助 14px + 動作按鈕、上下 padding 64px</td></tr>
+            <tr><td>Modal</td><td>max-width 480px 置中、圓角 4px、padding 24px、右上 X + 點遮罩可關</td></tr>
+            <tr><td>錯誤/提示</td><td>純文字 + 對應色底線（紅/橙/綠/灰），無背景框、無 icon</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="subsub">動畫 / 攝影</h4>
+      <p class="sec-note" style="margin-bottom:0;">動畫：沿用既有 slider，不新增動態（要加則 150~300ms ease-out、可被 reduced-motion 關）。攝影：極簡背景、自然光、低飽和，商品圖去背或乾淨背景、統一色溫。</p>
+    </div>
+
+    <!-- 活動頁 -->
+    <div class="tab-panel" data-panel="activity">
+
+      <!-- ★ 最搶眼：必須提供風格參考素材 -->
+      <div class="must-provide">
+        <div class="mp-k">活動頁的第一件事 · 不可略過</div>
+        <div class="mp-title">先拿到「風格參考素材」，才開得了工</div>
+        <p class="mp-desc">
+          活動頁的長相<strong>不由這份 DS 決定</strong>，由你每一檔提供的風格參考素材決定——DS 只給護欄與少數建議。
+          <strong>沒有素材，AI 只能產出偏形象頁的保守版本，做不出活動該有的氣氛。</strong>
+        </p>
+        <div class="need-box">
+          <div class="need-h">開工前必備（AI 會主動跟你要，缺了不動工）</div>
+          <ul>
+            <li>moodboard 或參考風格網頁 URL</li>
+            <li>該檔主題色（主色 + 輔色）</li>
+            <li>關鍵視覺元素（主視覺圖 / 插畫風 / 質感傾向）</li>
+            <li>字型傾向（若有；主字 Noto Sans TC 不可換）</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="panel-lead">
+        重點是搭配主題把畫面做<strong>有趣</strong>。每檔活動性質不同、無法提前規範，所以這份刻意做薄：只定「紅線 + 少數建議 + 拿素材建專屬規範」的協議。
+        完整文件：<a href="../docs/spec-activity-page.md" style="color:var(--green);font-weight:500;">spec-activity-page.md ↗</a>
+      </p>
+
+      <h3 class="sub" style="margin-top:24px;">紅線 <span class="badge b-red">就算素材那樣、客戶那樣要求，也要擋</span></h3>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>紅線</th><th>對應核心</th></tr></thead>
+          <tbody>
+            <tr><td>Logo 不可換、不可變形</td><td>§一</td></tr>
+            <tr><td>主字型 Noto Sans TC 不可換</td><td>§一</td></tr>
+            <tr><td>Hero 不放 CTA、標題不做按鈕樣、無連結不 hover</td><td>§二</td></tr>
+            <tr><td>無障礙：對比 ≥ 4.5:1、觸控 44px、動畫可關</td><td>§五</td></tr>
+            <tr><td>AI Slop 十條全禁 — 活動頁再花俏也不例外</td><td>§七</td></tr>
+            <tr><td>文案品質：不空洞金句、具體事實、大字 ≤ 40 字不斷詞</td><td>§四</td></tr>
+            <tr><td>版面紀律：間距 4px 倍數、圓角同頁一致、同區塊對齊</td><td>§三</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-note" style="margin:12px 0 0;font-size:13px;"><strong>主色與 CTA 色不在紅線內</strong>——活動頁可依主題改（見下方建議）。品牌識別靠 logo 與字型維持。素材帶來的色彩 / 裝飾只要不踩 AI Slop、不違反無障礙對比即可。</p>
+
+      <h3 class="sub">少數風格建議 <span class="badge b-should">SHOULD</span> <span class="badge b-may">MAY</span></h3>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>面向</th><th>建議</th><th>級別</th></tr></thead>
+          <tbody>
+            <tr><td>主色 / CTA 色</td><td>優先品牌綠 <span class="mono">#4ba83b</span>，但可依主題參考改用主題色</td><td><span class="badge b-should">SHOULD</span></td></tr>
+            <tr><td>Section padding</td><td>留白偏大，配合節奏（見 3-版面節奏原則）</td><td><span class="badge b-should">SHOULD</span></td></tr>
+            <tr><td>Banner 比例</td><td>桌機 16:9 ~ 21:9</td><td><span class="badge b-should">SHOULD</span></td></tr>
+            <tr><td>圓角 / 表單 / Icon / 版型</td><td>可自訂（圓角須同頁一致）</td><td><span class="badge b-may">MAY</span></td></tr>
+            <tr><td>動態</td><td>可增加（scroll fade、進場），但節制、可關</td><td><span class="badge b-may">MAY</span></td></tr>
+            <tr><td>攝影 / 主視覺</td><td>由風格參考素材決定（節慶可高飽和喜氣、聯名跟對方調性）</td><td>依素材</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">風格參考協議（AI agent 必做）</h3>
+      <ol class="flow">
+        <li>載入核心護欄（不可違背）。</li>
+        <li>檢查該活動是否已有風格參考素材（見上方必備清單）。</li>
+        <li><strong>沒有素材 → 主動提醒使用者提供</strong>，並說明長相由素材決定、不給只能做保守版。</li>
+        <li>依「護欄 + 素材」推導出<strong>該檔專屬規範</strong>（專屬色、圓角、間距、動態量等），存進活動資料夾 / LP brief 供複用。</li>
+        <li>衝突：素材 vs 建議 → 以素材為準；素材 vs 核心護欄 → 以護欄為準、退回素材並向使用者說明。</li>
+      </ol>
+
+      <h3 class="sub">該檔專屬規範模板（每檔產出物）</h3>
+      <pre># 【活動名】專屬 DS（YYYY-MM-DD）
+&gt; 繼承：核心護欄（不可違背）+ 活動頁延伸
+&gt; 風格來源：&lt;素材連結 / moodboard / 參考網頁&gt;
+
+## 主題色
+- 主題主色：#______（不取代品牌綠，用於背景 / 標題 / 氛圍）
+- 主題輔色：#______、#______
+- CTA：維持品牌綠 #4ba83b（紅線）
+
+## 表現值（覆蓋活動頁建議之處）
+- 圓角：__px（同頁一致）   Section padding：__px
+- 動態：&lt;有哪些、時長&gt;   字級微調：&lt;主視覺 h1 放大到 __&gt;
+
+## 主視覺 / 素材
+- Hero：&lt;描述 / 檔案&gt;   裝飾元素：&lt;描述&gt;
+
+## 破例註記（若有）
+- &lt;哪條建議、為什麼、經誰同意&gt;   ← 不可覆蓋核心護欄</pre>
+
+      <h3 class="sub">與 LDP 工具包的接點</h3>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>階段</th><th>對應</th></tr></thead>
+          <tbody>
+            <tr><td>策略 brief</td><td>1-活動頁策略引導 / <span class="mono">ldp-activity-strategy</span></td></tr>
+            <tr><td>素材規劃與產出（含風格參考）</td><td>2-素材產出指引 / <span class="mono">ldp-asset-plan</span> / <span class="mono">ldp-asset-gen</span></td></tr>
+            <tr><td>版面節奏</td><td>3-版面節奏原則 / <span class="mono">ldp-rhythm</span></td></tr>
+            <tr><td>套 DS（護欄 + 專屬規範）</td><td>本規範 / <span class="mono">ldp-ds</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 GreenBox Design System · V1.9 · 一套核心，兩種延伸 · <a href="../index.html">首頁</a> · <a href="https://github.com/glenwen-soohoo/greenbox-design-system" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<script>
+  var btns = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+  var label = document.getElementById('pick-label');
+  var names = { image: '形象頁', activity: '活動頁' };
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-tab');
+      btns.forEach(function (x) { x.classList.toggle('active', x === b); });
+      panels.forEach(function (p) { p.classList.toggle('active', p.getAttribute('data-panel') === t); });
+      label.textContent = names[t];
+      window.scrollTo({ top: document.getElementById('pages').offsetTop - 100, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

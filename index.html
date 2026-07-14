@@ -171,6 +171,31 @@
   }
   .tools-section .btn-tool .ico { font-size: 16px; }
 
+  .ds-entry {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    text-align: left; background: #fff; border: 1px solid #4ba83b;
+    border-left: 3px solid #4ba83b; border-radius: 4px;
+    padding: 24px 28px; margin-bottom: 48px; transition: all 0.15s;
+  }
+  .ds-entry:hover { box-shadow: 0 4px 16px rgba(75,168,59,0.1); transform: translateY(-1px); }
+  .ds-entry .ds-entry-k { font-size: 12px; color: #4ba83b; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
+  .ds-entry .ds-entry-t { font-size: 20px; font-weight: 700; color: #008000; margin-bottom: 6px; }
+  .ds-entry .ds-entry-d { font-size: 14px; color: #595757; line-height: 1.7; }
+  .ds-entry .arrow { font-size: 22px; color: #4ba83b; flex-shrink: 0; }
+
+  .v1-fold { border: 1px solid #e0e4e6; border-radius: 4px; background: #fff; margin-top: 8px; }
+  .v1-fold > summary {
+    list-style: none; cursor: pointer; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 15px; font-weight: 600; color: #595757;
+  }
+  .v1-fold > summary::-webkit-details-marker { display: none; }
+  .v1-fold > summary .v1-badge { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: #999; background: #f0f2f2; border-radius: 4px; padding: 4px 8px; margin-right: 12px; }
+  .v1-fold > summary .caret { color: #999; transition: transform 0.15s; }
+  .v1-fold[open] > summary .caret { transform: rotate(90deg); }
+  .v1-fold[open] > summary { border-bottom: 1px solid #e0e4e6; }
+  .v1-body { padding: 24px; }
+
   @media (max-width: 768px) {
     main { padding: 40px 20px; }
     .groups { grid-template-columns: 1fr; gap: 32px; }
@@ -188,56 +213,52 @@
 <main>
   <div class="container">
     <h1>GreenBox Design System</h1>
-    <p class="lead">無毒農 v1 兩方案決策樣本——選一個進入瀏覽。每個頁面上方有切換 bar，可以快速跳到其他方案。</p>
+    <p class="lead">無毒農 Design System。目前版本 <strong>V1.9</strong>（微調中，穩定後改 V2）。早期 V1 決策樣本收在下方。</p>
 
-    <div class="groups">
-      <div class="group">
-        <h2>Plan A</h2>
-        <div class="group-name">踏實版</div>
-        <div class="btn-stack">
-          <a class="btn" href="plan-a/preview.html">
-            <span>方案 A · 規範總覽</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="btn" href="plan-a/sample1.html">
-            <span>方案 A · 範例 1</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="btn" href="plan-a/sample2.html">
-            <span>方案 A · 範例 2</span>
+    <a class="ds-entry" href="ds/index.html">
+      <div>
+        <div class="ds-entry-k">V1.9 · 現行規範</div>
+        <div class="ds-entry-t">一套核心，兩種延伸 — 完整規範說明</div>
+        <div class="ds-entry-d">核心護欄 + 品牌 token，加上形象頁 / 活動頁延伸（擇一）。這是現在該用的規範。</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <details class="v1-fold">
+      <summary>
+        <span><span class="v1-badge">V1</span>決策樣本（歷史）· 兩方案 A / D + 工具</span>
+        <span class="caret">›</span>
+      </summary>
+      <div class="v1-body">
+        <div class="groups">
+          <div class="group">
+            <h2>Plan A</h2>
+            <div class="group-name">踏實版</div>
+            <div class="btn-stack">
+              <a class="btn" href="plan-a/preview.html"><span>方案 A · 規範總覽</span><span class="arrow">→</span></a>
+              <a class="btn" href="plan-a/sample1.html"><span>方案 A · 範例 1</span><span class="arrow">→</span></a>
+              <a class="btn" href="plan-a/sample2.html"><span>方案 A · 範例 2</span><span class="arrow">→</span></a>
+            </div>
+          </div>
+          <div class="group">
+            <h2>Plan D</h2>
+            <div class="group-name">精煉版</div>
+            <div class="btn-stack">
+              <a class="btn" href="plan-d/preview.html"><span>方案 D · 規範總覽</span><span class="arrow">→</span></a>
+              <a class="btn" href="plan-d/sample1.html"><span>方案 D · 範例 1</span><span class="arrow">→</span></a>
+              <a class="btn" href="plan-d/sample2.html"><span>方案 D · 範例 2</span><span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="tools-section">
+          <h2>Tools</h2>
+          <a class="btn-tool" href="tools/font-weight.html">
+            <span>字體粗細測試（設計自行調）</span>
             <span class="arrow">→</span>
           </a>
         </div>
       </div>
-
-      <div class="group">
-        <h2>Plan D</h2>
-        <div class="group-name">精煉版</div>
-        <div class="btn-stack">
-          <a class="btn" href="plan-d/preview.html">
-            <span>方案 D · 規範總覽</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="btn" href="plan-d/sample1.html">
-            <span>方案 D · 範例 1</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="btn" href="plan-d/sample2.html">
-            <span>方案 D · 範例 2</span>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tools-section">
-      <h2>Tools</h2>
-      <a class="btn-tool" href="tools/font-weight.html">
-        <span class="ico">🔤</span>
-        <span>字體粗細測試（設計自行調）</span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
+    </details>
   </div>
 </main>
 

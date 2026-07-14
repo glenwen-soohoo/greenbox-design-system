@@ -1,11 +1,11 @@
 # GreenBox Design System
 
 > 建立日期：2026-05-07
-> 最後更新：2026-05-14
+> 最後更新：2026-07-13
 > 類型：參考資料
 > 適用對象：無毒農內部 + 老闆決策
 
-無毒農（GreenBox）Design System v1 的方案決策樣本展示頁。
+無毒農（GreenBox）Design System 展示頁。**定案架構為「一套核心 + 兩種延伸（形象頁 / 活動頁擇一）」**；早期 v1 兩方案（A / D）決策樣本保留為歷史。
 
 線上預覽：https://glenwen-soohoo.github.io/greenbox-design-system/
 
@@ -15,8 +15,12 @@
 
 | 路徑 | 內容 |
 |---|---|
-| `index.html` | 主展示頁，列出兩方案 + 6 個展示頁面 |
-| `plan-a/preview.html` | 方案 A 規範總覽（色票/字級/版型...）|
+| `index.html` | 主展示頁（頂部為定案架構入口 + v1 決策樣本）|
+| **`ds/index.html`** | **定案架構規範說明：核心 + 形象頁 / 活動頁延伸（tabs 擇一）** |
+| `docs/spec-core.md` | 核心規範（護欄 + 品牌 token，全頁面必守）|
+| `docs/spec-image-page.md` | 形象頁延伸（品牌門面鎖定值）|
+| `docs/spec-activity-page.md` | 活動頁延伸（紅線 + 建議 + 風格參考協議）|
+| `plan-a/preview.html` | 〔歷史〕方案 A 規範總覽（色票/字級/版型...）|
 | `plan-a/sample1.html` | 方案 A 範例 1：關於無毒農（套上官網殼） |
 | `plan-a/sample2.html` | 方案 A 範例 2：關於無毒農 變化版（套上官網殼） |
 | `plan-d/preview.html` | 方案 D 規範總覽 |
@@ -28,7 +32,21 @@
 
 ---
 
-## 兩個方案
+## 定案架構（三層）
+
+原本形象頁用方案 A、活動頁用方案 D 兩份並行，重複性高。改為一套核心 + 兩延伸：
+
+- **核心**（`docs/spec-core.md`）：護欄（不誤導點擊、版面紀律、文案品質、無障礙、AI 友善、AI Slop 禁用）+ 品牌 token（色彩 / 字型 / 字級）。全頁面必守。
+- **形象頁延伸**（`docs/spec-image-page.md`）：品牌門面的固定鎖定值，低頻。
+- **活動頁延伸**（`docs/spec-activity-page.md`）：少數建議 + 每檔外掛風格參考素材，高頻。
+
+一個頁面只會套用其中一種延伸。互動說明頁見 `ds/index.html`。
+
+---
+
+## 早期兩方案（決策歷史）
+
+> 以下 A / D 是定案前的決策樣本，內容已收斂進上面的三層架構，保留供追溯。
 
 ### 方案 A · 踏實版
 
