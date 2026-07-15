@@ -149,7 +149,7 @@
   --body-size: 19px; --small-size: 16px; --note-size: 14px;
   /* font weight */
   --h1-weight: 500; --h2-weight: 500; --h3-weight: 400; --h4-weight: 400;
-  --body-weight: 400; --small-weight: 300; --note-weight: 300;
+  --body-weight: 400; --small-weight: 400; --note-weight: 300;
 }
 ```
 
@@ -160,11 +160,11 @@
 | h3 | 30px | 1.4 | 400 | 子標題 |
 | h4 | 24px | 1.5 | 400 | 小標題 |
 | body | 19px | 1.85 | 400 | 正文（大行高）|
-| small | 16px | 1.6 | 300 | 輔助（特殊情境）|
+| small | 16px | 1.6 | 400 | 輔助（特殊情境）|
 | note | 14px | 1.5 | 300 | 最小級（圖說 / footer）|
 
 → 本階梯由原版整體**往上調一級**（含字級與字重）：最小級 note 由 13/300 提為 14/300，其餘各級繼承原本上一階的值，h1 補到 48/500。行高服務用途、不平移。
-→ 字重分佈：note / small 300、內文 body 與 h3 / h4 標題 400、h1 / h2 500。RWD 各斷點放大值見 §三。
+→ 字重分佈：note 300、small / body / h3 / h4 400、h1 / h2 500。RWD 各斷點放大值見 §三。
 → 活動頁 h1 字級 **MAY** 依主視覺放大，但字型與字重階層關係不變。
 
 ### 1.5.1 字級使用紀律（MUST）
