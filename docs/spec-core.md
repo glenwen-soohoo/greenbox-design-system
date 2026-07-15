@@ -145,26 +145,36 @@
 :root {
   --font-family: 'Noto Sans TC', sans-serif;
   /* font size */
-  --h1-size: 39px;  --h2-size: 30px;  --h3-size: 24px;  --h4-size: 19px;
-  --body-size: 16px; --small-size: 14px; --note-size: 13px;
+  --h1-size: 48px;  --h2-size: 39px;  --h3-size: 30px;  --h4-size: 24px;
+  --body-size: 19px; --small-size: 16px; --note-size: 14px;
   /* font weight */
-  --h1-weight: 500; --h2-weight: 400; --h3-weight: 400; --h4-weight: 400;
-  --body-weight: 300; --small-weight: 300; --note-weight: 300;
+  --h1-weight: 500; --h2-weight: 500; --h3-weight: 400; --h4-weight: 400;
+  --body-weight: 400; --small-weight: 300; --note-weight: 300;
 }
 ```
 
 | 級別 | 字級 | 行高 | 字重 | 用途 |
 |---|---|---|---|---|
-| h1 | 39px | 1.25 | 500 | 頁面主標 |
-| h2 | 30px | 1.3 | 400 | Section 標題 |
-| h3 | 24px | 1.4 | 400 | 子標題 |
-| h4 | 19px | 1.5 | 400 | 小標題 |
-| body | 16px | 1.85 | 300 | 正文（大行高）|
-| small | 14px | 1.6 | 300 | 輔助 |
-| note | 13px | 1.5 | 300 | 註解 |
+| h1 | 48px | 1.25 | 500 | 頁面主標 |
+| h2 | 39px | 1.3 | 500 | Section 標題 |
+| h3 | 30px | 1.4 | 400 | 子標題 |
+| h4 | 24px | 1.5 | 400 | 小標題 |
+| body | 19px | 1.85 | 400 | 正文（大行高）|
+| small | 16px | 1.6 | 300 | 輔助（特殊情境）|
+| note | 14px | 1.5 | 300 | 最小級（圖說 / footer）|
 
-→ 字重整體偏細（h1 500、其餘標題 400、內文 300）。RWD 各斷點放大值見 §三。
+→ 本階梯由原版整體**往上調一級**（含字級與字重）：最小級 note 由 13/300 提為 14/300，其餘各級繼承原本上一階的值，h1 補到 48/500。行高服務用途、不平移。
+→ 字重分佈：note / small 300、內文 body 與 h3 / h4 標題 400、h1 / h2 500。RWD 各斷點放大值見 §三。
 → 活動頁 h1 字級 **MAY** 依主視覺放大，但字型與字重階層關係不變。
+
+### 1.5.1 字級使用紀律（MUST）
+
+實測常見「用錯層級」，一律避免：
+
+- **內文一律用 body**；只有特殊情境（表格附註、標籤、次要輔助）才用 small，**不可濫用 small 當內文**。
+- **禁止拿 body 當標題**（標題一律用 h1~h4）；**禁止拿 note / small 當內文**。這兩種是最常見的誤用。
+- **note 是最小級，僅用於圖片說明文字、footer、版權宣告等邊緣資訊**，不是內文層級。
+- **活動頁預設不使用 note 層級**（活動頁少有需要這種邊緣小字的情境）。
 
 ### 1.6 品牌識別規則（什麼不可動、什麼可依主題調）
 

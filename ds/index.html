@@ -115,6 +115,15 @@
   .need-box ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
   .need-box ul li { position: relative; padding-left: 24px; font-size: 14px; line-height: 1.6; }
   .need-box ul li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--green); font-weight: 700; }
+  .ref-sites { margin-top: 20px; border-top: 1px solid var(--green); padding-top: 16px; }
+  .ref-sites > summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--green-dark); list-style: none; }
+  .ref-sites > summary::-webkit-details-marker { display: none; }
+  .ref-sites > summary::before { content: "▸ "; color: var(--green); }
+  .ref-sites[open] > summary::before { content: "▾ "; }
+  .ref-sites ul { list-style: none; margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  .ref-sites li a { font-size: 14px; color: var(--green); }
+  .ref-sites li a:hover { text-decoration: underline; }
+  @media (max-width: 600px) { .ref-sites ul { grid-template-columns: 1fr; } }
 
   ol.flow { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 12px; }
   ol.flow li { counter-increment: s; padding-left: 44px; position: relative; font-size: 14px; line-height: 1.7; }
@@ -125,13 +134,13 @@
   /* ===== 視覺化示意 ===== */
   .type-row { display: flex; align-items: baseline; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
   .type-row .type-label { flex-shrink: 0; width: 120px; font-size: 12px; color: var(--muted); font-family: monospace; }
-  .ts-h1 { font-size: 39px; font-weight: 500; line-height: 1.25; }
-  .ts-h2 { font-size: 30px; font-weight: 400; }
-  .ts-h3 { font-size: 24px; font-weight: 400; }
-  .ts-h4 { font-size: 19px; font-weight: 400; }
-  .ts-body { font-size: 16px; font-weight: 300; }
-  .ts-small { font-size: 14px; font-weight: 300; }
-  .ts-note { font-size: 13px; font-weight: 300; color: var(--text-2); }
+  .ts-h1 { font-size: 48px; font-weight: 500; line-height: 1.25; }
+  .ts-h2 { font-size: 39px; font-weight: 500; }
+  .ts-h3 { font-size: 30px; font-weight: 400; }
+  .ts-h4 { font-size: 24px; font-weight: 400; }
+  .ts-body { font-size: 19px; font-weight: 400; }
+  .ts-small { font-size: 16px; font-weight: 300; }
+  .ts-note { font-size: 14px; font-weight: 300; color: var(--text-2); }
 
   .radius-demo { display: flex; gap: 16px; flex-wrap: wrap; }
   .radius-demo .rd { text-align: center; }
@@ -310,24 +319,30 @@
       <table>
         <thead><tr><th>級別</th><th>字級</th><th>行高</th><th>字重</th><th>用途</th></tr></thead>
         <tbody>
-          <tr><td>h1</td><td>39px</td><td>1.25</td><td>500</td><td>頁面主標</td></tr>
-          <tr><td>h2</td><td>30px</td><td>1.3</td><td>400</td><td>Section 標題</td></tr>
-          <tr><td>h3</td><td>24px</td><td>1.4</td><td>400</td><td>子標題</td></tr>
-          <tr><td>h4</td><td>19px</td><td>1.5</td><td>400</td><td>小標題</td></tr>
-          <tr><td>body</td><td>16px</td><td>1.85</td><td>300</td><td>正文（大行高）</td></tr>
-          <tr><td>small</td><td>14px</td><td>1.6</td><td>300</td><td>輔助</td></tr>
-          <tr><td>note</td><td>13px</td><td>1.5</td><td>300</td><td>註解</td></tr>
+          <tr><td>h1</td><td>48px</td><td>1.25</td><td>500</td><td>頁面主標</td></tr>
+          <tr><td>h2</td><td>39px</td><td>1.3</td><td>500</td><td>Section 標題</td></tr>
+          <tr><td>h3</td><td>30px</td><td>1.4</td><td>400</td><td>子標題</td></tr>
+          <tr><td>h4</td><td>24px</td><td>1.5</td><td>400</td><td>小標題</td></tr>
+          <tr><td>body</td><td>19px</td><td>1.85</td><td>400</td><td>正文（大行高）</td></tr>
+          <tr><td>small</td><td>16px</td><td>1.6</td><td>300</td><td>輔助（特殊情境）</td></tr>
+          <tr><td>note</td><td>14px</td><td>1.5</td><td>300</td><td>最小級（圖說 / footer）</td></tr>
         </tbody>
       </table>
     </div>
     <div style="margin-top:24px;">
-      <div class="type-row"><div class="type-label">h1 / 39 / 500</div><div class="ts-h1">無毒農 用信任連結產地與餐桌</div></div>
-      <div class="type-row"><div class="type-label">h2 / 30 / 400</div><div class="ts-h2">我們的承諾與檢驗標準</div></div>
-      <div class="type-row"><div class="type-label">h3 / 24 / 400</div><div class="ts-h3">產地直送、每日篩檢</div></div>
-      <div class="type-row"><div class="type-label">h4 / 19 / 400</div><div class="ts-h4">質譜篩檢實驗室</div></div>
-      <div class="type-row"><div class="type-label">body / 16 / 300</div><div class="ts-body">無毒農成立的初衷，是用信任連結產地和餐桌。</div></div>
-      <div class="type-row"><div class="type-label">small / 14 / 300</div><div class="ts-small">每批作物皆經質譜普篩法檢驗</div></div>
-      <div class="type-row"><div class="type-label">note / 13 / 300</div><div class="ts-note">＊本標準資訊以官網公告為準</div></div>
+      <div class="type-row"><div class="type-label">h1 / 48 / 500</div><div class="ts-h1">無毒農 用信任連結產地與餐桌</div></div>
+      <div class="type-row"><div class="type-label">h2 / 39 / 500</div><div class="ts-h2">我們的承諾與檢驗標準</div></div>
+      <div class="type-row"><div class="type-label">h3 / 30 / 400</div><div class="ts-h3">產地直送、每日篩檢</div></div>
+      <div class="type-row"><div class="type-label">h4 / 24 / 400</div><div class="ts-h4">質譜篩檢實驗室</div></div>
+      <div class="type-row"><div class="type-label">body / 19 / 400</div><div class="ts-body">無毒農成立的初衷，是用信任連結產地和餐桌。</div></div>
+      <div class="type-row"><div class="type-label">small / 16 / 300</div><div class="ts-small">每批作物皆經質譜普篩法檢驗</div></div>
+      <div class="type-row"><div class="type-label">note / 14 / 300</div><div class="ts-note">＊本標準資訊以官網公告為準</div></div>
+    </div>
+    <div class="callout" style="margin-top:20px;border-left:4px solid var(--green-dark);">
+      <strong>字級使用紀律（MUST）</strong>——實測常見「用錯層級」，一律避免：<br>
+      · <strong>內文一律 body</strong>；small 只在表格附註 / 標籤等特殊情境用，不可濫用當內文。<br>
+      · <strong>禁止拿 body 當標題</strong>（標題用 h1~h4），<strong>禁止拿 note / small 當內文</strong>——這兩種最常見。<br>
+      · <strong>note（最小級）僅用於圖片說明、footer、版權</strong>，不是內文層級；活動頁預設不使用 note。
     </div>
 
     <h4 class="subsub">品牌識別規則 — 什麼不可動、什麼可依主題調</h4>
@@ -530,17 +545,26 @@
     <p class="sec-note">這裡才是「頁面實際長怎樣」的規範，跟核心一樣重要。兩者互斥，切換下方分頁看各自規範——做一個頁面時只會用到其中一頁。</p>
 
     <div class="tabs-head" role="tablist">
-      <button class="tab-btn active" data-tab="image" role="tab">形象頁延伸<span class="k">品牌門面 · 低頻</span></button>
-      <button class="tab-btn" data-tab="activity" role="tab">活動頁延伸<span class="k">檔期活動 · 高頻</span></button>
+      <button class="tab-btn active" data-tab="activity" role="tab">活動頁延伸<span class="k">檔期活動 · 高頻</span></button>
+      <button class="tab-btn" data-tab="image" role="tab">形象頁延伸<span class="k">品牌門面 · 低頻</span></button>
     </div>
-    <p class="pick-hint">一次只會套用一種延伸 · 目前顯示：<span id="pick-label">形象頁</span></p>
+    <p class="pick-hint">一次只會套用一種延伸 · 目前顯示：<span id="pick-label">活動頁</span></p>
 
     <!-- 形象頁 -->
-    <div class="tab-panel active" data-panel="image">
+    <div class="tab-panel" data-panel="image">
       <p class="panel-lead">
         <strong>無毒農品牌門面的固定長相</strong>，風格穩定、低頻更新。這是一組鎖定值，不需外掛素材，直接照做。
         完整文件：<a href="../docs/spec-image-page.md" style="color:var(--green);font-weight:500;">spec-image-page.md ↗</a>
       </p>
+
+      <div class="callout" style="border-left:4px solid var(--green-dark);background:var(--pale-green);">
+        <strong>新建頁面前置：先給參考，否則走 Wireframe</strong><br>
+        形象頁雖有固定鎖定值，但<strong>版面編排</strong>仍需依據。做<strong>新建網頁</strong>時——<strong>請提供參考網站或參考圖檔</strong>（既有類似頁 / 設計稿 / 競品截圖皆可）。
+        <strong>若完全沒有參考，AI 會以 Wireframe（線框稿）製作</strong>：只排版面結構與區塊層次、不做視覺完稿，待你補參考再完稿。避免在沒依據下自行發明不符品牌的版面。
+      </div>
+      <div class="callout">
+        <strong>字級層級</strong>：形象頁會用到 <strong>note（14/300）</strong> 的地方＝<strong>圖片說明文字、footer、版權</strong>；其餘一律 body。內文不可用 note / small、標題不可用 body，small 僅特殊情境（表格附註 / 標籤）。
+      </div>
 
       <h4 class="subsub">按鈕</h4>
       <div class="tbl-scroll">
@@ -610,15 +634,15 @@
     </div>
 
     <!-- 活動頁 -->
-    <div class="tab-panel" data-panel="activity">
+    <div class="tab-panel active" data-panel="activity">
 
       <!-- ★ 最搶眼：必須提供風格參考素材 -->
       <div class="must-provide">
         <div class="mp-k">活動頁的第一件事 · 不可略過</div>
         <div class="mp-title">先拿到「風格參考素材」，才開得了工</div>
         <p class="mp-desc">
-          活動頁的長相<strong>不由這份 DS 決定</strong>，由你每一檔提供的風格參考素材決定——DS 只給護欄與少數建議。
-          <strong>沒有素材，AI 只能產出偏形象頁的保守版本，做不出活動該有的氣氛。</strong>
+          這份 Design System 的任務是<strong>確保風格不偏離無毒農形象太多</strong>，它<strong>無法保證頁面變有趣</strong>。
+          所以要從頭設計一份新的活動頁、想讓畫面有趣時，<strong>請另外提供參考網站或圖片素材</strong>，AI 會依參考抓取視覺風格與設計元素。沒有參考，AI 只能產出偏形象頁的保守版本，做不出活動該有的氣氛。
         </p>
         <div class="need-box">
           <div class="need-h">開工前必備（AI 會主動跟你要，缺了不動工）</div>
@@ -629,6 +653,16 @@
             <li>字型傾向（若有；主字 Noto Sans TC 不可換）</li>
           </ul>
         </div>
+        <details class="ref-sites">
+          <summary>沒有靈感？點開幾個找 landing page 參考的網站</summary>
+          <ul>
+            <li><a href="https://www.pinterest.com/search/pins/?q=landing%20page" target="_blank" rel="noopener">Pinterest · landing page</a></li>
+            <li><a href="https://dribbble.com/search/landing-page" target="_blank" rel="noopener">Dribbble · landing-page</a></li>
+            <li><a href="https://design-library.jp/" target="_blank" rel="noopener">Design Library（日本）</a></li>
+            <li><a href="https://www.lapa.ninja/" target="_blank" rel="noopener">Lapa Ninja</a></li>
+            <li><a href="https://minimal.gallery/tag/one-page/" target="_blank" rel="noopener">Minimal Gallery · one-page</a></li>
+          </ul>
+        </details>
       </div>
 
       <p class="panel-lead">
@@ -652,6 +686,31 @@
         </table>
       </div>
       <p class="sec-note" style="margin:12px 0 0;font-size:13px;"><strong>主色與 CTA 色不在紅線內</strong>——活動頁可依主題改（見下方建議）。品牌識別靠 logo 與字型維持。素材帶來的色彩 / 裝飾只要不踩 AI Slop、不違反無障礙對比即可。</p>
+
+      <h3 class="sub">Logo 應用規格 <span class="badge b-must">header 必備</span></h3>
+      <p class="sec-note" style="margin-bottom:16px;">活動頁 header <strong>預設一定要有無毒農 logo</strong>——主色 / CTA 可換，logo 就是維持品牌識別的關鍵。依底色選原色 / 白色版本：</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+        <div style="flex:1;min-width:240px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;">
+          <div style="background:#fff;padding:32px;text-align:center;border-bottom:1px solid var(--line);"><img src="https://fruitbox.blob.core.windows.net/pagematerials/activity/logo/LOGO_horizontal.png" alt="無毒農原色橫式 logo" style="height:44px;max-width:100%;"></div>
+          <div style="padding:12px 16px;font-size:13px;color:var(--text-2);">白底 / 淺色主題底 → <strong>原色 logo</strong></div>
+        </div>
+        <div style="flex:1;min-width:240px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;">
+          <div style="background:#2d7a1f;padding:32px;text-align:center;border-bottom:1px solid var(--line);"><img src="https://fruitbox.blob.core.windows.net/pagematerials/activity/logo/LOGO_white_horizontal.png" alt="無毒農白色橫式 logo" style="height:44px;max-width:100%;"></div>
+          <div style="padding:12px 16px;font-size:13px;color:var(--text-2);">深色 / 飽和主題色底 → <strong>白色 logo</strong></div>
+        </div>
+      </div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>形態</th><th>用途</th><th>原色</th><th>白色</th></tr></thead>
+          <tbody>
+            <tr><td>橫式 horizontal</td><td>header 首選</td><td class="mono">LOGO_horizontal.png</td><td class="mono">LOGO_white_horizontal.png</td></tr>
+            <tr><td>主 logo（直式）</td><td>方形 / 置中主視覺</td><td class="mono">LOGO.png</td><td class="mono">LOGO_white.png</td></tr>
+            <tr><td>icon 圖標</td><td>極窄空間 / favicon / 行動版</td><td class="mono">LOGO_icon.png</td><td class="mono">LOGO_icon_white.png</td></tr>
+            <tr><td>wordmark 文字標</td><td>只需字標</td><td class="mono">LOGO_wordmark.png</td><td class="mono">LOGO_wordmark_white.png</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-note" style="margin:12px 0 0;font-size:13px;">Base URL：<span class="mono">https://fruitbox.blob.core.windows.net/pagematerials/activity/logo/</span> ＋ 檔名。</p>
 
       <h3 class="sub">少數風格建議 <span class="badge b-should">SHOULD</span> <span class="badge b-may">MAY</span></h3>
       <div class="tbl-scroll">
@@ -683,9 +742,9 @@
 &gt; 風格來源：&lt;素材連結 / moodboard / 參考網頁&gt;
 
 ## 主題色
-- 主題主色：#______（不取代品牌綠，用於背景 / 標題 / 氛圍）
+- 主題主色：#______（可依主題，用於背景 / 標題 / 氛圍）
 - 主題輔色：#______、#______
-- CTA：維持品牌綠 #4ba83b（紅線）
+- CTA 色：#______（建議品牌綠 #4ba83b，可依主題改）
 
 ## 表現值（覆蓋活動頁建議之處）
 - 圓角：__px（同頁一致）   Section padding：__px
@@ -703,7 +762,7 @@
           <thead><tr><th>階段</th><th>對應</th></tr></thead>
           <tbody>
             <tr><td>策略 brief</td><td>1-活動頁策略引導 / <span class="mono">ldp-activity-strategy</span></td></tr>
-            <tr><td>素材規劃與產出（含風格參考）</td><td>2-素材產出指引 / <span class="mono">ldp-asset-plan</span> / <span class="mono">ldp-asset-gen</span></td></tr>
+            <tr><td>素材規劃與產出（含風格參考）</td><td>2-素材產出指引 / <span class="mono">ldp-asset-plan</span> / <span class="mono">ldp-asset-gen</span><br><span style="font-size:12px;color:var(--muted);">※ <span class="mono">ldp-asset-gen</span> 需額外 API token（生圖服務），請找 Glen 協助設定</span></td></tr>
             <tr><td>版面節奏</td><td>3-版面節奏原則 / <span class="mono">ldp-rhythm</span></td></tr>
             <tr><td>套 DS（護欄 + 專屬規範）</td><td>本規範 / <span class="mono">ldp-ds</span></td></tr>
           </tbody>
